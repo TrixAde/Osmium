@@ -99,4 +99,4 @@ local textbox = tab:CreateTextBox("Input", function (value)
 end, "Placeholder")
 ```
 
-<h2 align="center">Create a Text Box</h2>
+<h2 align="center">Create a TextBox</h2>
