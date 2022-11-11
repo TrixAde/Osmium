@@ -59,10 +59,10 @@ local tab = window:CreateTab("Demo Tab")
 **Tab:CreateLabel(text?: *string*, description?: *string*) -> *TextLabel***
 
 ```lua
-local label = test:CreateLabel("Demo Text")
+local label = test:CreateLabel("Demo Text","text description")
 ```
 
-<h2 align="center">Update or Add Title Label</h2>
+<h2 align="center">Update Title</h2>
 
 **TextLabel:SetTitle(text?: *string*) -> *TextLabel***
 
@@ -70,7 +70,7 @@ local label = test:CreateLabel("Demo Text")
 label:SetTitle("Title")
 ```
 
-<h2 align="center">Update or Add Title Description</h2>
+<h2 align="center">Update Description</h2>
 
 **TextLabel:SetDescription(text?: *string*) -> *TextLabel***
 
