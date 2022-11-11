@@ -89,6 +89,8 @@ local toggle = tab:CreateToggle("Toggle Exemple", false, function (value)
 end)
 ```
 
+---
+
 <h2 align="center">Create a Text Box</h2>
 
 **Tab:CreateTextBox(text: *string*, callback?: *function (string)*, placeholder?: *string*) -> *TextBox***
@@ -98,6 +100,7 @@ local textbox = tab:CreateTextBox("TextBox Exemple", function (value)
     print("Value changed to", value)
 end, "Placeholder")
 ```
+---
 
 <h2 align="center">Create a Button</h2>
 
@@ -108,3 +111,5 @@ local button = library:CreateButton("Button Exemple", function()
     print("Clicked")
 end)
 ```
+
+---
