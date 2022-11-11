@@ -59,7 +59,7 @@ local tab = window:CreateTab("Demo Tab")
 **Tab:CreateLabel(text?: *string*, description?: *string*) -> *TextLabel***
 
 ```lua
-local label = test:CreateLabel("Demo Text","text description")
+local label = test:CreateLabel("Title Exemple","Description Exemple")
 ```
 
 <h2 align="center">Update Title</h2>
@@ -84,7 +84,7 @@ label:SetDescription("Description")
 **Tab:CreateToggle(text: *string*, default?: boolean, callback?: *function (boolean)*) -> *Toggle***
 
 ```lua
-local toggle = tab:CreateToggle("On/Off", false, function (value)
+local toggle = tab:CreateToggle("Toggle Exemple", false, function (value)
     print("Value changed to", value)
 end)
 ```
@@ -94,7 +94,7 @@ end)
 **Tab:CreateTextBox(text: *string*, callback?: *function (string)*, placeholder?: *string*) -> *TextBox***
 
 ```lua
-local textbox = tab:CreateTextBox("Input", function (value)
+local textbox = tab:CreateTextBox("TextBox Exemple", function (value)
     print("Value changed to", value)
 end, "Placeholder")
 ```
@@ -104,7 +104,7 @@ end, "Placeholder")
 **library:CreateButton(text: *string*, callback?: *function ()*) -> *Button***
 
 ```lua
-local button = library:CreateButton("Exemple", function()
+local button = library:CreateButton("Button Exemple", function()
     print("Clicked")
 end)
 ```
