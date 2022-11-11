@@ -99,4 +99,12 @@ local textbox = tab:CreateTextBox("Input", function (value)
 end, "Placeholder")
 ```
 
-<h2 align="center">Create a TextBox</h2>
+<h2 align="center">Create a Button</h2>
+
+**library:CreateButton(text: *string*, callback?: *function (string)*) -> *Button***
+
+```lua
+local button = library:CreateButton("Exemple", function()
+    print("Clicked")
+end)
+```
