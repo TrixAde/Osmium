@@ -54,7 +54,7 @@ local tab = window:CreateTab("Demo Tab")
 ```
 ---
 
-## Create a Text Label
+<h2 align="center">Create a Text Label</h2>
 
 **Tab:CreateLabel(text?: *string*, description?: *string*) -> *TextLabel***
 
