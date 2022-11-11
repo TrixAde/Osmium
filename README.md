@@ -101,7 +101,7 @@ end, "Placeholder")
 
 <h2 align="center">Create a Button</h2>
 
-**library:CreateButton(text: *string*, callback?: *function (string)*) -> *Button***
+**library:CreateButton(text: *string*, callback?: *function ()*) -> *Button***
 
 ```lua
 local button = library:CreateButton("Exemple", function()
