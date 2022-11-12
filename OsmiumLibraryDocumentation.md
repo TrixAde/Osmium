@@ -120,6 +120,6 @@ end)
 
 ```lua
 local slider = tab:CreateSlider("Slider Exemple",0,100,function(arg)
-	print(args)
+	print(arg)
 end)
 ```
