@@ -107,7 +107,7 @@ end, "Placeholder")
 **Tab:CreateButton(text: *string*, callback?: *function ()*) -> *Button***
 
 ```lua
-local button = library:CreateButton("Button Exemple", function()
+local button = tab:CreateButton("Button Exemple", function()
     print("Clicked")
 end)
 ```
