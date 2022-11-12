@@ -116,7 +116,7 @@ end)
 
 <h2 align="center">Create a Slider</h2>
 
-**library:CreateButton(text: *string*,number: *minvalue*,number: *maxvalue*, callback?: *function ()*) -> *Button***
+**library:CreateSlider(text: *string*,number: *minvalue*, number: *maxvalue*, callback?: *function ()*) -> *Slider***
 
 ```lua
 local sld = test:CreateSlider("Slider Exemple",0,100,function(arg)
