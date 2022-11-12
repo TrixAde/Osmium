@@ -119,7 +119,7 @@ end)
 **library:CreateSlider(text: *string*,number: *minvalue*, number: *maxvalue*, callback?: *function ()*) -> *Slider***
 
 ```lua
-local sld = test:CreateSlider("Slider Exemple",0,100,function(arg)
+local slider = tab:CreateSlider("Slider Exemple",0,100,function(arg)
 	print(args)
 end)
 ```
