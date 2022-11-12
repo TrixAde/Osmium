@@ -104,7 +104,7 @@ end, "Placeholder")
 
 <h2 align="center">Create a Button</h2>
 
-**library:CreateButton(text: *string*, callback?: *function ()*) -> *Button***
+**Tab:CreateButton(text: *string*, callback?: *function ()*) -> *Button***
 
 ```lua
 local button = library:CreateButton("Button Exemple", function()
@@ -116,7 +116,7 @@ end)
 
 <h2 align="center">Create a Slider</h2>
 
-**library:CreateSlider(text: *string*,number: *minvalue*, number: *maxvalue*, callback?: *function ()*) -> *Slider***
+**Tab:CreateSlider(text: *string*,number: *minvalue*, number: *maxvalue*, callback?: *function ()*) -> *Slider***
 
 ```lua
 local slider = tab:CreateSlider("Slider Exemple",0,100,function(arg)
