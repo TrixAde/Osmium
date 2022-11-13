@@ -96,9 +96,9 @@ end)
 **Tab:CreateTextBox(text: *string*, callback?: *function (string)*, placeholder?: *string*) -> *TextBox***
 
 ```lua
-local textbox = tab:CreateTextBox("TextBox Exemple",function(value)
-    print("Value changed to", value)
-end, "Placeholder")
+local textbox = tab:CreateTextbox("TextBox Exemple", function(value)
+    print("Value = ", value)
+end, "Write Here")
 ```
 ---
 
