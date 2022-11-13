@@ -1,3 +1,5 @@
+local library = pcall(loadstring("https://raw.githubusercontent.com/TrixAde/Osmium/main/OsmiumLibrary.lua"))
+
 local window = library:CreateWindow("Osmium UI Library")
 
 window:GetCurrentState()
