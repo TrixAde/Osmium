@@ -128,7 +128,7 @@ end)
 **Tab:CreateDropdown(text: *string*, values?: *table*, callback?: *function ()*) -> *Slider***
 
 ```lua
-local dropdown = tab:CreateDropdown("DropDown Exemple",{"Nami","Robin","Yamato"},function(val)
+local dropdown = tab:CreateDropdown("DropDown Exemple",{"Button 1","Button 2","Button 3"},function(val)
     print(val)
 end)
 ```
