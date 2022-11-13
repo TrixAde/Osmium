@@ -35,7 +35,7 @@ spawn(function()
 	end
 end)
 
-return (function()
+local library = (function()
     local UserInputService = game:GetService("UserInputService")
 
     local library = {
@@ -1047,3 +1047,6 @@ return (function()
 	return library
 
 end)()
+
+
+return library
