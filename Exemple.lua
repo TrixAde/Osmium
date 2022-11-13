@@ -2,8 +2,6 @@ local library = pcall(loadstring("https://raw.githubusercontent.com/TrixAde/Osmi
 
 local window = library:CreateWindow("Osmium UI Library")
 
-window:GetCurrentState()
-
 local test = window:CreateTab("Main")
 local info = window:CreateTab("Info")
 local cred = window:CreateTab("Credits")
