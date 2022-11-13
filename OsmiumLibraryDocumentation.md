@@ -13,7 +13,7 @@ local library = pcall(loadstring("https://raw.githubusercontent.com/TrixAde/Osmi
 **library:CreateWindow(title: *string*) -> *Window***
 
 ```lua
-local window = library:CreateWindow("Demo Window")
+local window = library:CreateWindow("Osmium UI Library")
 ```
 
 ## Get Window State
@@ -96,7 +96,7 @@ end)
 **Tab:CreateTextBox(text: *string*, callback?: *function (string)*, placeholder?: *string*) -> *TextBox***
 
 ```lua
-local textbox = tab:CreateTextBox("TextBox Exemple", function (value)
+local textbox = tab:CreateTextBox("TextBox Exemple",function(value)
     print("Value changed to", value)
 end, "Placeholder")
 ```
@@ -128,7 +128,7 @@ end)
 **Tab:CreateDropDown(text: *string*,number: *minvalue*, number: *maxvalue*, callback?: *function ()*) -> *Slider***
 
 ```lua
-local slider = tab:CreateDropDown("DropDown Exemple",{"Button 1", "Button 2", "Button 3},function()
+local slider = tab:CreateDropDown("DropDown Exemple",{"Button 1", "Button 2", "Button 3"},function()
 
 end)
 ```
