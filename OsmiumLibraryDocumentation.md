@@ -1,7 +1,7 @@
 <h1 align="center">Osmium Library Documentation</h1>
 
 ```lua
-local library = pcall(loadstring("https://raw.githubusercontent.com/TrixAde/Osmium/main/OsmiumLibrary.lua"))
+local _, library = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com/TrixAde/Osmium/main/OsmiumLibrary.lua")))
 ```
 
 ---
