@@ -128,7 +128,7 @@ end)
 **Tab:CreateDropDown(text: *string*,number: *minvalue*, number: *maxvalue*, callback?: *function ()*) -> *Slider***
 
 ```lua
-local slider = tab:CreateDropDown("DropDown Exemple",{"Button 1", "Button 2", "Button 3"},function()
-
+local dropdown = tab:CreateDropdown("DropDown Exemple",{"Nami","Robin","Yamato"},function(val)
+    print(val)
 end)
 ```
