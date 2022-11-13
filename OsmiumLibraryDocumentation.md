@@ -116,7 +116,7 @@ end)
 
 <h2 align="center">Create a Slider</h2>
 
-**Tab:CreateSlider(text: *string*,number: *minvalue*, number: *maxvalue*, callback?: *function ()*) -> *Slider***
+**Tab:CreateSlider(text: *string*, minvalue: *number*, maxvalue: *number*, callback?: *function ()*) -> *Slider***
 
 ```lua
 local slider = tab:CreateSlider("Slider Exemple",0,100,function(arg)
@@ -125,7 +125,7 @@ end)
 ```
 <h2 align="center">Create a DropDown</h2>
 
-**Tab:CreateDropDown(text: *string*,number: *minvalue*, number: *maxvalue*, callback?: *function ()*) -> *Slider***
+**Tab:CreateDropdown(text: *string*, values?: *table*, callback?: *function ()*) -> *Slider***
 
 ```lua
 local dropdown = tab:CreateDropdown("DropDown Exemple",{"Nami","Robin","Yamato"},function(val)
