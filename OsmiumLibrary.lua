@@ -387,7 +387,7 @@ local library = (function()
 			createTabButton(tabId, name)
 
             CreateInstance("UIPadding", tabContainer, {
-                PaddingLeft = UDim.new(0, 15),
+                PaddingLeft = UDim.new(0, 10),
                 PaddingTop = UDim.new(0, 10)
             }) 
 			CreateInstance("UIListLayout", tabContainer, {
