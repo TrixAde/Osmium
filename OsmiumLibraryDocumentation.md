@@ -1,14 +1,14 @@
 <h1 align="center">Osmium Library Documentation</h1>
 
 ```lua
-local library = pcall(loadstring("https://raw.githubusercontent.com/TrixAde/Osmium/main/OsmiumLibrary.lua"))
+local library = pcall(loadstring("..."))
 ```
 
 ---
 
 <h2 align="center">Window</h2>
 
-### Create a Window
+## Create a Window
 
 **library:CreateWindow(title: *string*) -> *Window***
 
@@ -41,6 +41,26 @@ Possibles values :
 window:Destroy()
 ```
 
+## Hide Window
+
+Change the windows's state to `library.WindowState.Minimized`.
+
+**Window:Hide()**
+
+```lua
+window:Hide()
+```
+
+## Show Window
+
+Change the windows's state to `library.WindowState.Oppenned`.
+
+**Window:Show()**
+
+```lua
+window:Show()
+```
+
 ---
 
 <h2 align="center">Tab</h2>
@@ -52,74 +72,163 @@ window:Destroy()
 ```lua
 local tab = window:CreateTab("Demo Tab")
 ```
----
 
-<h2 align="center">Create a Text Label</h2>
+## Create a Text Label
 
 **Tab:CreateLabel(text?: *string*, description?: *string*) -> *TextLabel***
 
 ```lua
-local label = tab:CreateLabel("Title Exemple","Description Exemple")
+local label = test:CreateLabel("Demo Text")
 ```
 
-<h2 align="center">Update Title</h2>
+## Create a Button
 
-**TextLabel:SetTitle(text?: *string*) -> *TextLabel***
+**Tab:CreateButton(text: *string*, callback?: *function ()*) -> *Button***
+
+```lua
+local button = tab:CreateButton("Click Me", function ()
+    print("Clicked")
+end)
+```
+
+## Create a Toggle
+
+**Tab:CreateToggle(text: *string*, default?: boolean, callback?: *function (boolean)*) -> *Toggle***
+
+```lua
+local toggle = tab:CreateToggle("On/Off", false, function (value)
+    print("Value changed to", value)
+end)
+```
+
+## Create a Text Box
+
+**Tab:CreateTextBox(text: *string*, callback?: *function (string)*, placeholder?: *string*) -> *TextBox***
+
+```lua
+local textbox = tab:CreateTextBox("Input", function (value)
+    print("Value changed to", value)
+end, "Placeholder")
+```
+
+## Create a Dropdown
+
+**Tab:CreateDropdown(text: *string*, values?: *table*, callback?: *function (string)*) -> *Dropdown***
+
+```lua
+local dropdown = tab:CreateDropdown("Select", {
+    "A",
+    "B",
+    "C"
+}, function (value)
+    print("Value changed to", value)
+end)
+```
+
+---
+
+<h2 align="center">Text Label</h2>
+
+## Update or Add Title Label
+
+**TextLabel:SetTitle(text?: *string*)**
 
 ```lua
 label:SetTitle("Title")
 ```
 
-<h2 align="center">Update Description</h2>
+## Update or Add Title Description
 
-**TextLabel:SetDescription(text?: *string*) -> *TextLabel***
+**TextLabel:SetDescription(text?: *string*)**
 
 ```lua
 label:SetDescription("Description")
 ```
+
 ---
 
-<h2 align="center">Create a Toggle</h2>
+<h2 align="center">Toggle</h2>
 
-**Tab:CreateToggle(text: *string*, default?: boolean, callback?: *function (boolean)*) -> *Toggle***
+## Get Label
+
+**Toggle:GetLabel() -> *string***
+
+## Update Label
+
+**Toggle:SetLabel(label: *string*)**
+
+## Get Value
+
+**Toggle:GetValue() -> *boolean***
+
+## Update Value
+
+**Toggle:SetValue(value: *boolean*)**
+
+---
+
+<h2 align="center">Text Box</h2>
+
+## Get Label
+
+**TextBox:GetLabel() -> *string***
+
+## Update Label
+
+**TextBox:SetLabel(label: *string*)**
+
+## Get Value
+
+**TextBox:GetValue() -> *string***
+
+## Update Value
+
+**TextBox:SetValue(value: *string*)**
+
+---
+
+<h2 align="center">Text Box</h2>
+
+## Get Label
+
+**TextBox:GetLabel() -> *string***
+
+## Update Label
+
+**TextBox:SetLabel(label: *string*)**
+
+## Get Value
+
+**TextBox:GetValue() -> *string***
+
+## Update Value
+
+**TextBox:SetValue(value: *string*)**
+
+---
+
+<h2 align="center">Dropdown</h2>
+
+## Add Value
+
+**Dropdown:Add(value: *string*)**
 
 ```lua
-local toggle = tab:CreateToggle("Toggle Exemple", false, function (value)
-    print("Value changed to", value)
-end)
+dropdown:Add("D")
 ```
 
----
+## Remove a Value
 
-<h2 align="center">Create a Text Box</h2>
-
-**Tab:CreateTextBox(text: *string*, callback?: *function (string)*, placeholder?: *string*) -> *TextBox***
+**Dropdown:Remove(value: *string*)**
 
 ```lua
-local textbox = tab:CreateTextBox("TextBox Exemple", function (value)
-    print("Value changed to", value)
-end, "Placeholder")
-```
----
-
-<h2 align="center">Create a Button</h2>
-
-**Tab:CreateButton(text: *string*, callback?: *function ()*) -> *Button***
-
-```lua
-local button = tab:CreateButton("Button Exemple", function()
-    print("Clicked")
-end)
+dropdown:Remove("D")
 ```
 
----
+## Get Possibles Values
 
-<h2 align="center">Create a Slider</h2>
-
-**Tab:CreateSlider(text: *string*,number: *minvalue*, number: *maxvalue*, callback?: *function ()*) -> *Slider***
+**Dropdown:Values() -> *table***
 
 ```lua
-local slider = tab:CreateSlider("Slider Exemple",0,100,function(arg)
-	print(arg)
-end)
+dropdown:Values()
 ```
