@@ -1,7 +1,7 @@
 <h1 align="center">Osmium Library Documentation</h1>
 
 ```lua
-local library = pcall(loadstring("..."))
+local library = pcall(loadstring("https://raw.githubusercontent.com/TrixAde/Osmium/main/OsmiumLibrary.lua"))
 ```
 
 ---
