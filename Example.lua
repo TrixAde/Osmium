@@ -28,7 +28,7 @@ local batp = test:CreateButton("Button Exemple", function()
     print("c")
 end)
 
-local label = info:CreateLabel("KeyBind :","KeyBind to Close/Open the Gui Is 'Left Control'")
+local label = info:CreateLabel("KeyBind :","KeyBind to Close/Open the Gui Is 'Left Alt'")
 
 local label = cred:CreateLabel("Interface :","Made by Trix#2794")
 local label = cred:CreateLabel("Interface Scripts :","Made by Trix#2794")
