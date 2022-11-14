@@ -16,24 +16,6 @@ Script : Trix#2794 / Julman#1234
 
 --]]
 
---[[
-
-                                                                                                                                                                      
-  ,ad8888ba,                                   88                                      88           88  88                                                            
- d8"'    `"8b                                  ""                                      88           ""  88                                                            
-d8'        `8b                                                                         88               88                                                            
-88          88  ,adPPYba,  88,dPYba,,adPYba,   88  88       88  88,dPYba,,adPYba,      88           88  88,dPPYba,   8b,dPPYba,  ,adPPYYba,  8b,dPPYba,  8b       d8  
-88          88  I8[    ""  88P'   "88"    "8a  88  88       88  88P'   "88"    "8a     88           88  88P'    "8a  88P'   "Y8  ""     `Y8  88P'   "Y8  `8b     d8'  
-Y8,        ,8P   `"Y8ba,   88      88      88  88  88       88  88      88      88     88           88  88       d8  88          ,adPPPPP88  88           `8b   d8'   
- Y8a.    .a8P   aa    ]8I  88      88      88  88  "8a,   ,a88  88      88      88     88           88  88b,   ,a8"  88          88,    ,88  88            `8b,d8'    
-  `"Y8888Y"'    `"YbbdP"'  88      88      88  88   `"YbbdP'Y8  88      88      88     88888888888  88  8Y"Ybbd8"'   88          `"8bbdP"Y8  88              Y88'     
-                                                                                                                                                             d8'      
-                                                                                                                                                            d8'  
-Interface : Trix#2794
-Script : Trix#2794 / Julman#1234
-
---]]
-
 ---@diagnostic disable: redefined-local, undefined-global, unused-local, param-type-mismatch, redundant-value, lowercase-global, undefined-field
 
 spawn(function()
