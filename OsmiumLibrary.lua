@@ -682,11 +682,9 @@ local library = (function()
                 local function update(call)
 					local speed = 0.1
                     if boolValue.Value == false then
-						task.wait(0.05)
                         toggleButton.UIGradient.Enabled = false
                         toggleContainer:TweenPosition(UDim2.new(0.900, 0,0.37, 0), "In", "Linear", speed, false)
                     else
-						task.wait(0.05)
 						toggleButton.UIGradient.Enabled = true
 						toggleContainer:TweenPosition(UDim2.new(0.945, 0,0.37, 0), "Out", "Linear", speed, false)
 						wait(0.05)
