@@ -14,6 +14,8 @@ Y8,        ,8P   `"Y8ba,   88      88      88  88  88       88  88      88      
 Interface : Trix#2794
 Script : Trix#2794 / Julman#1234
 
+Join the Discord : discord.gg/TT3y4gkJtq
+
 --]]
 
 ---@diagnostic disable: redefined-local, undefined-global, unused-local, param-type-mismatch, redundant-value, lowercase-global, undefined-field
