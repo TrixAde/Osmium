@@ -12,7 +12,6 @@ Y8,        ,8P   `"Y8ba,   88      88      88  88  88       88  88      88      
                                                                                                                                                              d8'      
                                                                                                                                                             d8'  
 Interface : Trix#2794
-
 Script : Trix#2794 / Julman#1234
 
 --]]
@@ -433,13 +432,17 @@ local library = (function()
 					ClearTextOnFocus = false,
                 })
 
-                CreateInstance("UICorner", textBoxInstance, {})
+                CreateInstance("UICorner", textBoxInstance, {
+					CornerRadius = UDim.new(0,5)
+				})
                 CreateInstance("UIStroke", textBoxInstance, {
                     ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
                     Color = Color3.new(0.568627, 0.568627, 0.568627)
                 })
 
-                CreateInstance("UICorner", textBoxLabel, {})
+                CreateInstance("UICorner", textBoxLabel, {
+					CornerRadius = UDim.new(0,5)
+				})
                 CreateInstance("UIStroke", textBoxLabel, {
                     ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
                     Color = Color3.new(0.568627, 0.568627, 0.568627)
@@ -525,7 +528,9 @@ local library = (function()
                     ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
                     Color = Color3.new(0.568627, 0.568627, 0.568627)
                 })
-                CreateInstance("UICorner", sliderLabel, {})
+                CreateInstance("UICorner", sliderLabel, {
+					CornerRadius = UDim.new(0,5)
+				})
 
 				CreateInstance("UIPadding",sliderLabel, {
 					PaddingBottom = UDim.new(0, 10),
@@ -544,7 +549,9 @@ local library = (function()
 					ClipsDescendants = true,
 				})
 
-				CreateInstance("UICorner",SliderButton, {})
+				CreateInstance("UICorner",SliderButton, {
+					CornerRadius = UDim.new(0,25)
+				})
 			
 				local SliderInner = CreateInstance("Frame",SliderButton, {
 					Name = "SliderInner",
@@ -555,7 +562,9 @@ local library = (function()
 					BorderColor3 = Color3.fromRGB(50,50,50)
 				})
 
-				CreateInstance("UICorner",SliderInner,{})
+				CreateInstance("UICorner",SliderInner,{
+					CornerRadius = UDim.new(0,25)
+				})
 
 				CreateInstance("UIGradient",SliderInner, {
 					Color = Colors.Gradients.Cyan
@@ -625,7 +634,9 @@ local library = (function()
                     BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
                 })
 
-                CreateInstance("UICorner", mainToggleContainer, {})
+                CreateInstance("UICorner", mainToggleContainer, {
+					CornerRadius = UDim.new(0,5)
+				})
                 CreateInstance("UIStroke", mainToggleContainer, {
                     ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
                     Color = Color3.new(0.568627, 0.568627, 0.568627)
@@ -633,10 +644,10 @@ local library = (function()
 
                 local toggleContainer = CreateInstance("Frame", mainToggleContainer, {
                     Name = "Toggle",
-                    Position = UDim2.new(0.80, 0, 0.340626538, 0),
+                    Position = UDim2.new(0.900, 0,0.37, 0),
                     ZIndex = 2,
-                    Size = UDim2.new(0, 23, 0, 17),
-                    BackgroundColor3 = Colors.Gray.TogBox
+                    Size = UDim2.new(0, 14, 0, 15),
+                    BackgroundColor3 = Color3.fromRGB(30, 30, 30)
                 })
 
                 CreateInstance("UICorner", toggleContainer, {})
@@ -652,9 +663,9 @@ local library = (function()
                     AutoButtonColor = false,
                     Font = Enum.Font.SourceSans,
                     Name = "ToggleBtn",
-                    Position = UDim2.new(0.870999992, 0, 0.340999991, 0),
+                    Position = UDim2.new(0.897, 0,0.341, 0),
                     TextTransparency = 1,
-                    Size = UDim2.new(0, 50, 0, 17),
+                    Size = UDim2.new(0, 37,0, 17),
                     TextSize = 14,
                     BackgroundColor3 = Colors.White
                 })
@@ -662,23 +673,22 @@ local library = (function()
                 CreateInstance("UICorner", toggleButton, {})
                 CreateInstance("UIStroke", toggleButton, {
                     ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-					Color = Color3.fromRGB(145,145,145)
+					Color = Color3.fromRGB(48, 48, 48)
                 })
 				CreateInstance("UIGradient",toggleButton, {
 					Color = Colors.Gradients.Cyan
 				})
-
 
                 local function update(call)
 					local speed = 0.1
                     if boolValue.Value == false then
 						task.wait(0.05)
                         toggleButton.UIGradient.Enabled = false
-                        toggleContainer:TweenPosition(UDim2.new(0.871, 0, 0.341, 0), "In", "Linear", speed, false)
+                        toggleContainer:TweenPosition(UDim2.new(0.900, 0,0.37, 0), "In", "Linear", speed, false)
                     else
 						task.wait(0.05)
 						toggleButton.UIGradient.Enabled = true
-						toggleContainer:TweenPosition(UDim2.new(0.927, 0, 0.341, 0), "Out", "Linear", speed, false)
+						toggleContainer:TweenPosition(UDim2.new(0.945, 0,0.37, 0), "Out", "Linear", speed, false)
 						wait(0.05)
                     end
 
@@ -745,7 +755,9 @@ local library = (function()
 					ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
 					Color = Color3.new(0.568627, 0.568627, 0.568627)
 				})
-				CreateInstance("UICorner", textLabel, {})
+				CreateInstance("UICorner", textLabel, {
+					CornerRadius = UDim.new(0,5)
+				})
 
 				local textDescription = CreateInstance("TextLabel", textLabel, {
 					TextColor3 = Colors.White,
@@ -794,10 +806,12 @@ local library = (function()
 					    TextXAlignment = Enum.TextXAlignment.Left,
 					    Size = UDim2.new(0, 470, 0, 40),
 					    TextSize = 14,
-						BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+						BackgroundColor3 = Colors.Gray.Button
 				    })
 
-					CreateInstance("UICorner", buttonContainer, {})
+					CreateInstance("UICorner", buttonContainer, {
+						CornerRadius = UDim.new(0,5)
+					})
 
 					CreateInstance("UIStroke", buttonContainer, {
 						ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
@@ -841,7 +855,6 @@ local library = (function()
 					ClipsDescendants = true,
 					ZIndex = 0,
 					Size = size,
-					BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078),
 					BackgroundTransparency = 1,
 				})
 
@@ -874,9 +887,13 @@ local library = (function()
 				UIStroke101["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
 				UIStroke101["Color"] = Color3.new(0.568627, 0.568627, 0.568627)
 
-				local UICorner102 = Instance.new("UICorner", TextBox100)
+				local UICorner102 = CreateInstance("UICorner", TextBox100, {
+					CornerRadius = UDim.new(0,20)
+				})
 
-				local UICorner103 = Instance.new("UICorner", Frame98)
+				local UICorner103 = CreateInstance("UICorner", Frame98, {
+					CornerRadius = UDim.new(0,5)
+				})
 
 				local TextButton104 = CreateInstance("TextButton", Frame98, {
 					["TextColor3"] = Colors.White,
@@ -896,7 +913,9 @@ local library = (function()
 					Color = Color3.new(0.568627, 0.568627, 0.568627)
 				})
 				
-				local UICorner105 = Instance.new("UICorner", TextButton104)
+				local UICorner105 = CreateInstance("UICorner", TextButton104, {
+					CornerRadius = UDim.new(0,5)
+				})
 
 				local Script106 = Instance.new("Script", TextButton104)
 
@@ -957,8 +976,8 @@ local library = (function()
 				local Script119 = Instance.new("Script", dropdownValuesContainer)
 				Script119["Name"] = "SelectedElement"
 
-				local UIPadding120 = Instance.new("UIPadding", dropdownValuesContainer)
-				UIPadding120["PaddingTop"] = UDim.new(0, 2)
+				local UIPadding120 = Instance.new("UIPadding", dropdownValuesContainer) -- trix
+				UIPadding120["PaddingTop"] = UDim.new(0, 9)
 
 				local Script121 = Instance.new("Script", dropdownValuesContainer)
 				Script121["Name"] = "LockScrollingDropDown"
@@ -1044,6 +1063,5 @@ local library = (function()
 	return library
 
 end)()
-
 
 return library
