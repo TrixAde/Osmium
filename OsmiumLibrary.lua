@@ -825,6 +825,11 @@ local library = (function()
 					BackgroundTransparency = 1,
 				})
 
+				local stroke = CreateInstance("UIStroke", Frame98, {
+					Enabled = false,
+					Color = Color3.fromRGB(53, 53, 53)
+				})
+
 				CreateInstance("UIPadding", Frame98, {
 					["PaddingTop"] = UDim.new(0, 15)
 				})
@@ -948,11 +953,13 @@ local library = (function()
 							btn:TweenPosition(UDim2.new(0, 0, 0.2, 0), "Out", "Quint", 0.2)
 							searchbar:TweenPosition(UDim2.new(0.645, 0, -0.044, 0), "Out", "Quint", 0.2)
 							scrollingframe.Visible = true
+							stroke.Enabled = true
 							searchbar.Visible = true
 						else
 							dropdown:TweenSize(UDim2.new(0, 470, 0, 40), "Out", "Quint", 0.2)
 							dropdown.TextButton:TweenPosition(UDim2.new(0, 0, 1, 0), "Out", "Quint", 0.2)
 							scrollingframe.Visible = false
+							stroke.Enabled = false
 							searchbar.Visible = false
 						end
 					end)
