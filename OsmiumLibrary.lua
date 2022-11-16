@@ -14,8 +14,6 @@ Y8,        ,8P   `"Y8ba,   88      88      88  88  88       88  88      88      
 Interface : Trix#2794
 Script : Trix#2794 / Julman#1234
 
-Join the Discord : discord.gg/TT3y4gkJtq
-
 --]]
 
 ---@diagnostic disable: redefined-local, undefined-global, unused-local, param-type-mismatch, redundant-value, lowercase-global, undefined-field
@@ -348,11 +346,6 @@ local library = (function()
 			CreateInstance("UICorner", tabButton, {
 				CornerRadius = UDim.new(0, 10)
 			})
-			CreateInstance("UIStroke", tabButton, {
-				Color = Color3.new(0.568627, 0.568627, 0.568627),
-				Thickness = 0.800000011920929,
-				ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-			})
 
 			tabButton.MouseButton1Click:Connect(function ()
 				changeTab(id)
@@ -437,18 +430,10 @@ local library = (function()
                 CreateInstance("UICorner", textBoxInstance, {
 					CornerRadius = UDim.new(0,5)
 				})
-                CreateInstance("UIStroke", textBoxInstance, {
-                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                    Color = Color3.new(0.568627, 0.568627, 0.568627)
-                })
 
                 CreateInstance("UICorner", textBoxLabel, {
 					CornerRadius = UDim.new(0,5)
 				})
-                CreateInstance("UIStroke", textBoxLabel, {
-                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                    Color = Color3.new(0.568627, 0.568627, 0.568627)
-                })
 
                 pcall(function()
                     local function shrink()
@@ -526,10 +511,6 @@ local library = (function()
                     BackgroundColor3 = Colors.Gray.Button
                 })
 
-                CreateInstance("UIStroke", sliderLabel, {
-                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                    Color = Color3.new(0.568627, 0.568627, 0.568627)
-                })
                 CreateInstance("UICorner", sliderLabel, {
 					CornerRadius = UDim.new(0,5)
 				})
@@ -639,10 +620,6 @@ local library = (function()
                 CreateInstance("UICorner", mainToggleContainer, {
 					CornerRadius = UDim.new(0,5)
 				})
-                CreateInstance("UIStroke", mainToggleContainer, {
-                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                    Color = Color3.new(0.568627, 0.568627, 0.568627)
-                })
 
                 local toggleContainer = CreateInstance("Frame", mainToggleContainer, {
                     Name = "Toggle",
@@ -673,10 +650,7 @@ local library = (function()
                 })
 
                 CreateInstance("UICorner", toggleButton, {})
-                CreateInstance("UIStroke", toggleButton, {
-                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-					Color = Color3.fromRGB(48, 48, 48)
-                })
+
 				CreateInstance("UIGradient",toggleButton, {
 					Color = Colors.Gradients.Cyan
 				})
@@ -684,9 +658,11 @@ local library = (function()
                 local function update(call)
 					local speed = 0.1
                     if boolValue.Value == false then
+
                         toggleButton.UIGradient.Enabled = false
                         toggleContainer:TweenPosition(UDim2.new(0.900, 0,0.37, 0), "In", "Linear", speed, false)
                     else
+
 						toggleButton.UIGradient.Enabled = true
 						toggleContainer:TweenPosition(UDim2.new(0.945, 0,0.37, 0), "Out", "Linear", speed, false)
 						wait(0.05)
@@ -751,10 +727,6 @@ local library = (function()
 					BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 				})
 
-				CreateInstance("UIStroke", textLabel, {
-					ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-					Color = Color3.new(0.568627, 0.568627, 0.568627)
-				})
 				CreateInstance("UICorner", textLabel, {
 					CornerRadius = UDim.new(0,5)
 				})
@@ -813,11 +785,6 @@ local library = (function()
 						CornerRadius = UDim.new(0,5)
 					})
 
-					CreateInstance("UIStroke", buttonContainer, {
-						ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-						Color = Color3.new(0.568627, 0.568627, 0.568627)
-					})
-
 					local mouse = CreateInstance("ImageButton", buttonContainer, {
 					    ImageRectSize = Vector2.new(36, 36),
 					    Image = "rbxassetid://3926305904",
@@ -858,11 +825,6 @@ local library = (function()
 					BackgroundTransparency = 1,
 				})
 
-				CreateInstance("UIStroke", Frame98, {
-					ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-					Color = Color3.new(0.568627, 0.568627, 0.568627)
-				})
-
 				CreateInstance("UIPadding", Frame98, {
 					["PaddingTop"] = UDim.new(0, 15)
 				})
@@ -883,10 +845,6 @@ local library = (function()
 					["TextWrapped"] = true,
 				})
 
-				local UIStroke101 = Instance.new("UIStroke", TextBox100)
-				UIStroke101["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border
-				UIStroke101["Color"] = Color3.new(0.568627, 0.568627, 0.568627)
-
 				local UICorner102 = CreateInstance("UICorner", TextBox100, {
 					CornerRadius = UDim.new(0,20)
 				})
@@ -906,11 +864,6 @@ local library = (function()
 					["ZIndex"] = 3,
 					["TextSize"] = 14,
 					["BackgroundColor3"] = Color3.new(0.176471, 0.176471, 0.176471),
-				})
-
-				CreateInstance("UIStroke", TextButton104, {
-					ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-					Color = Color3.new(0.568627, 0.568627, 0.568627)
 				})
 				
 				local UICorner105 = CreateInstance("UICorner", TextButton104, {
@@ -999,6 +952,7 @@ local library = (function()
 						else
 							dropdown:TweenSize(UDim2.new(0, 470, 0, 40), "Out", "Quint", 0.2)
 							dropdown.TextButton:TweenPosition(UDim2.new(0, 0, 1, 0), "Out", "Quint", 0.2)
+							scrollingframe.Visible = false
 							searchbar.Visible = false
 						end
 					end)
