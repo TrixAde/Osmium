@@ -724,7 +724,7 @@ local library = (function()
 					Size = UDim2.new(0, 470, 0, 40),
 					ZIndex = 0,
 					TextSize = 14,
-					BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+					BackgroundColor3 = Colors.Gray.Button
 				})
 
 				CreateInstance("UICorner", textLabel, {
