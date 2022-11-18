@@ -1006,6 +1006,7 @@ local library = (function()
 
 								dropdownValuesContainer.Visible = false
 								searchbar.Visible = false
+								stroke.Enabled = false
 
 								selected.Text = "- " .. v.Text
 							end)
