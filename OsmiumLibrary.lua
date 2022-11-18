@@ -110,7 +110,7 @@ local library = (function()
             Position = UDim2.new(0.302488327, 0, 0.108222671, 0),
             BorderColor3 = Colors.Gray.Stroke,
             Size = UDim2.new(0, 507, 0, 40),
-            BackgroundColor3 = Colors.Gray.Top
+            BackgroundColor3 = Color3.fromRGB(20,20,20)
         })
 
         Instance.new("UICorner", top)
@@ -219,7 +219,7 @@ local library = (function()
             BorderColor3 = Colors.White,
             ZIndex = 0,
             Size = UDim2.new(0, 507, 0, 489),
-            BackgroundColor3 = Color3.new(0.141176, 0.141176, 0.141176)
+            BackgroundColor3 = Colors.Gray.Top
         })
 
         Instance.new("UICorner", windowContainer)
@@ -259,7 +259,7 @@ local library = (function()
 			CanvasSize = UDim2.new(0, 0, 0, 0),
             Size = UDim2.new(0, 496, 0, 439),
             BorderSizePixel = 0,
-            BackgroundColor3 = Color3.new(0.141176, 0.141176, 0.141176)
+            BackgroundColor3 = Colors.Gray.Top
         })
 
         local tabs = {}
@@ -279,7 +279,7 @@ local library = (function()
 			Position = UDim2.new(0.0101483287, 0, 0.0205678493, 0),
 			Size = UDim2.new(0, 500, 0, 38),
 			BackgroundTransparency = 1,
-			BackgroundColor3 = Colors.Gray.DarkButton,
+			BackgroundColor3 = Colors.Gray.Top,
 		})
 
 		CreateInstance("UIGridLayout", scrollingFrameTabs, {
@@ -1006,7 +1006,6 @@ local library = (function()
 
 								dropdownValuesContainer.Visible = false
 								searchbar.Visible = false
-								stroke.Enabled = false
 
 								selected.Text = "- " .. v.Text
 							end)
