@@ -18,7 +18,7 @@ Script : Trix#2794 / Julman#1234
 
 ---@diagnostic disable: redefined-local, undefined-global, unused-local, param-type-mismatch, redundant-value, lowercase-global, undefined-field
 
-spawn(function()
+pcall(function()
 	local snd = 6026984224
 	local sound = Instance.new("Sound",Workspace)
 	sound.SoundId = "rbxassetid://"..snd
@@ -967,17 +967,19 @@ local library = (function()
 					local searchbar = scrollframe.Parent.SearchBar
 	   
 					local function updatesearch()
-							for i,button in pairs(scrollframe:GetChildren()) do
-								if button:IsA("TextButton") then
-									local searchText = searchbar.Text
-									if searchText ~= "" then
-										local buttonText = string.lower(button.Text)
-										if string.find(buttonText, searchText) then
-											button.Visible = true
-										else
-											button.Visible = false
-										end
+						for i,button in pairs(scrollframe:GetChildren()) do
+							if button:IsA("TextButton") then
+								local searchText = searchbar.Text
+
+								if searchText ~= "" then
+									local buttonText = string.lower(button.Text)
+									
+									if string.find(buttonText, searchText) then
+										button.Visible = true
 									else
+										button.Visible = false
+									end
+								else
 									button.Visible = true
 								end
 							end
@@ -986,11 +988,12 @@ local library = (function()
 	   
 					searchbar.Changed:Connect(updatesearch)
 				end)
-				pcall(function()
-					local selected = Frame98.TextButton.TextLabel
-					local searchbar = Frame98.SearchBar
 
-					local function twn(argu)
+				pcall(function()
+					local selected = dropdownContainer.TextButton.TextLabel
+					local searchbar = dropdownContainer.SearchBar
+
+					local function PlayTeen(argu)
 						argu:TweenSize(UDim2.new(0, 470, 0, 40), "Out", "Quint", 0.2)
 						argu.TextButton:TweenPosition(UDim2.new(0, 0, 1, 0), "Out", "Quint", 0.2)
 					end
@@ -998,7 +1001,7 @@ local library = (function()
 					for i, v in pairs(dropdownValuesContainer:GetChildren()) do
 						if v:IsA("TextButton") then
 							v.MouseButton1Click:Connect(function()
-								twn(Frame98)
+								PlayTeen(dropdownContainer)
 
 								dropdownValuesContainer.Visible = false
 								searchbar.Visible = false
