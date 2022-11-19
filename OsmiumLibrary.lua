@@ -766,57 +766,57 @@ local library = (function()
 			end
 
 			function tab:CreateButton(name, callback)
-					local callback = callback or function(_) end
+				local callback = callback or function(_) end
 
-					local button = {}
+				local button = {}
 
-					local buttonContainer = CreateInstance("TextButton",tabContainer, {
-					    TextColor3 = Colors.White,
-					    Text = "  "..name,
-					    Font = Font,
-					    Position = UDim2.new(0, 0, 0.166284561, 0),
-					    TextXAlignment = Enum.TextXAlignment.Left,
-					    Size = UDim2.new(0, 470, 0, 40),
-					    TextSize = 14,
-						BackgroundColor3 = Colors.Gray.Button
-				    })
+				local buttonContainer = CreateInstance("TextButton",tabContainer, {
+				    TextColor3 = Colors.White,
+				    Text = "  "..name,
+				    Font = Font,
+				    Position = UDim2.new(0, 0, 0.166284561, 0),
+				    TextXAlignment = Enum.TextXAlignment.Left,
+				    Size = UDim2.new(0, 470, 0, 40),
+				    TextSize = 14,
+					BackgroundColor3 = Colors.Gray.Button
+				})
 
-					CreateInstance("UICorner", buttonContainer, {
-						CornerRadius = UDim.new(0,5)
-					})
+				CreateInstance("UICorner", buttonContainer, {
+					CornerRadius = UDim.new(0,5)
+				})
 
-					local mouse = CreateInstance("ImageButton", buttonContainer, {
-					    ImageRectSize = Vector2.new(36, 36),
-					    Image = "rbxassetid://3926305904",
-					    Name = "mouse",
-					    Position = UDim2.new(0.926306903, 0, 0.235370617, 0),
-					    ImageRectOffset = Vector2.new(204, 964),
-					    ZIndex = 2,
-					    BackgroundTransparency = 1,
-					    Size = UDim2.new(0, 25, 0, 24),
-				    })
+				local mouse = CreateInstance("ImageButton", buttonContainer, {
+				    ImageRectSize = Vector2.new(36, 36),
+				    Image = "rbxassetid://3926305904",
+				    Name = "mouse",
+				    Position = UDim2.new(0.926306903, 0, 0.235370617, 0),
+				    ImageRectOffset = Vector2.new(204, 964),
+				    ZIndex = 2,
+				    BackgroundTransparency = 1,
+				    Size = UDim2.new(0, 25, 0, 24),
+				})
 
-					buttonContainer.MouseButton1Click:Connect(function()
-						callback()
-					end)
+				buttonContainer.MouseButton1Click:Connect(function()
+					callback()
+				end)
 
-					function button:GetLabel()
-						return string.sub(buttonContainer.Text, 2)
-					end
-
-					function button:SetLabel(label)
-						buttonContainer.Text = "  " .. label
-					end
-
-					return button
+				function button:GetLabel()
+					return string.sub(buttonContainer.Text, 2)
 				end
+
+				function button:SetLabel(label)
+					buttonContainer.Text = "  " .. label
+				end
+
+				return button
+			end
 
 			function tab:CreateDropdown(text, values, callback)
 				local values = values or {}
 				local callback = callback or function(_) end
 				local size = UDim2.new(0, 470, 0, 40)
 
-				local Frame98 =	CreateInstance("Frame", tabContainer, {
+				local dropdownContainer = CreateInstance("Frame", tabContainer, {
 					Name = "Dropdown",
 					Position = UDim2.new(0, 0, 0.636, 0),
 					ClipsDescendants = true,
@@ -825,59 +825,59 @@ local library = (function()
 					BackgroundTransparency = 1,
 				})
 
-				local stroke = CreateInstance("UIStroke", Frame98, {
+				local stroke = CreateInstance("UIStroke", dropdownContainer, {
 					Enabled = false,
 					Color = Color3.fromRGB(53, 53, 53)
 				})
 
-				CreateInstance("UIPadding", Frame98, {
-					["PaddingTop"] = UDim.new(0, 15)
+				CreateInstance("UIPadding", dropdownContainer, {
+					PaddingTop = UDim.new(0, 15)
 				})
 
-				local TextBox100 = CreateInstance("TextBox",Frame98, {
-					["Visible"] = false,
-					["TextColor3"] = Color3.new(0.698039, 0.698039, 0.698039),
-					["Text"] = "",
-					["PlaceholderText"] = "Search",
-					["PlaceholderColor3"] = Color3.new(0.698039, 0.698039, 0.698039),
-					["Font"] = Enum.Font.SourceSansBold,
-					["Name"] = "SearchBar",
-					["Position"] = UDim2.new(0.645004511, 0, -0.0440000296, 0),
-					["Size"] = UDim2.new(0, 156, 0, 20),
-					["ZIndex"] = 4,
-					["TextSize"] = 14,
-					["BackgroundColor3"] = Colors.Gray.TogBox,
-					["TextWrapped"] = true,
+				local dropdownSearchBox = CreateInstance("TextBox", dropdownContainer, {
+					Visible = false,
+					TextColor3 = Color3.new(0.698039, 0.698039, 0.698039),
+					Text = "",
+					PlaceholderText = "Search",
+					PlaceholderColor3 = Color3.new(0.698039, 0.698039, 0.698039),
+					Font = Enum.Font.SourceSansBold,
+					Name = "SearchBar",
+					Position = UDim2.new(0.645004511, 0, -0.0440000296, 0),
+					Size = UDim2.new(0, 156, 0, 20),
+					ZIndex = 4,
+					TextSize = 14,
+					BackgroundColor3 = Colors.Gray.TogBox,
+					TextWrapped = true,
 				})
 
-				local UICorner102 = CreateInstance("UICorner", TextBox100, {
+				CreateInstance("UICorner", dropdownSearchBox, {
 					CornerRadius = UDim.new(0,20)
 				})
 
-				local UICorner103 = CreateInstance("UICorner", Frame98, {
+				CreateInstance("UICorner", dropdownContainer, {
 					CornerRadius = UDim.new(0,5)
 				})
 
-				local TextButton104 = CreateInstance("TextButton", Frame98, {
-					["TextColor3"] = Colors.White,
-					["Text"] = "  " .. text,
-					["AnchorPoint"] = Vector2.new(0, 1),
-					["Font"] = Font,
-					["TextXAlignment"] = Enum.TextXAlignment.Left,
-					["Position"] = UDim2.new(0, 0, 1, 0),
-					["Size"] = size,
-					["ZIndex"] = 3,
-					["TextSize"] = 14,
-					["BackgroundColor3"] = Color3.new(0.176471, 0.176471, 0.176471),
+				local dropdownLabel = CreateInstance("TextButton", dropdownContainer, {
+					TextColor3 = Colors.White,
+					Text = "  " .. text,
+					AnchorPoint = Vector2.new(0, 1),
+					Font = Font,
+					TextXAlignment = Enum.TextXAlignment.Left,
+					Position = UDim2.new(0, 0, 1, 0),
+					Size = size,
+					ZIndex = 3,
+					TextSize = 14,
+					BackgroundColor3 = Color3.new(0.176471, 0.176471, 0.176471),
 				})
 				
-				local UICorner105 = CreateInstance("UICorner", TextButton104, {
+				CreateInstance("UICorner", dropdownLabel, {
 					CornerRadius = UDim.new(0,5)
 				})
 
-				local Script106 = Instance.new("Script", TextButton104)
+				local Script106 = CreateInstance("Script", dropdownLabel, {})
 
-				local TextLabel108 = CreateInstance("TextLabel", TextButton104, {
+				local dropdownSelectedLabel = CreateInstance("TextLabel", dropdownLabel, {
 					TextWrapped = true,
 					TextColor3 = Colors.White,
 					Text = "",
@@ -890,23 +890,28 @@ local library = (function()
 					BackgroundColor3 = Color3.new(0.176471, 0.176471, 0.176471)
 				})
 
-				CreateInstance("UICorner", TextLabel108, {})
+				CreateInstance("UICorner", dropdownSelectedLabel, {})
 
-				local dropdownValuesContainer = CreateInstance("ScrollingFrame", Frame98, {
-					["ScrollBarImageColor3"] = Colors.Black,
-					["Active"] = true,
-					["ScrollBarThickness"] = 0,
-					["BackgroundTransparency"] = 1,
-					["Position"] = UDim2.new(0, 0, 0.215384528, 0),
-					["ScrollBarImageTransparency"] = 1,
-					["Visible"] = false,
-					["Size"] = UDim2.new(0, 469, 0, 98),
-					["CanvasSize"] = UDim2.new(0,0,0,0),
-					["AutomaticCanvasSize"] = Enum.AutomaticSize.Y,
+				local dropdownValuesContainer = CreateInstance("ScrollingFrame", dropdownContainer, {
+					ScrollBarImageColor3 = Colors.Black,
+					Active = true,
+					ScrollBarThickness = 0,
+					BackgroundTransparency = 1,
+					Position = UDim2.new(0, 0, 0.215384528, 0),
+					ScrollBarImageTransparency = 1,
+					Visible = false,
+					Size = UDim2.new(0, 469, 0, 98),
+					CanvasSize = UDim2.new(0,0,0,0),
+					AutomaticCanvasSize = Enum.AutomaticSize.Y,
+				})
+
+				CreateInstance("UICorner", dropdownValuesContainer, {})
+
+				CreateInstance("UIPadding", dropdownValuesContainer, {
+					PaddingTop = UDim.new(0, 2)
 				})
 
 				local function addDropButton(value)
-					CreateInstance("UICorner", dropdownValuesContainer, {})
 					return CreateInstance("TextButton", dropdownValuesContainer, {
 						TextSize = 14,
 						Font = Enum.Font.SourceSans,
@@ -925,52 +930,39 @@ local library = (function()
 					addDropButton(v)
 				end
 
-				local UIListLayout113 = Instance.new("UIListLayout", dropdownValuesContainer)
-				UIListLayout113["Padding"] = UDim.new(0, 3)
+				CreateInstance("UIListLayout", dropdownValuesContainer, {
+					Padding = UDim.new(0, 3)
+				})
 
-				local Script114 = Instance.new("Script", dropdownValuesContainer)
-				Script114["Name"] = "Searching"
+				local Script114 = CreateInstance("Script", dropdownValuesContainer, {
+					Name = "Searching"
+				})
 
-				local Script119 = Instance.new("Script", dropdownValuesContainer)
-				Script119["Name"] = "SelectedElement"
-
-				local UIPadding120 = Instance.new("UIPadding", dropdownValuesContainer)
-				UIPadding120["PaddingTop"] = UDim.new(0, 2)
-
-				local Script121 = Instance.new("Script", dropdownValuesContainer)
-				Script121["Name"] = "LockScrollingDropDown"
-
-				pcall(function()
-					local script = Script106
-					local btn = script.Parent
-					local dropdown = btn.Parent
-					local scrollingframe = dropdown.ScrollingFrame
-					local searchbar = dropdown.SearchBar
-
-					btn.MouseButton1Click:Connect(function()
-						if searchbar.Visible == false then
-							dropdown:TweenSize(UDim2.new(0, 470, 0, 140), "Out", "Quint", 0.2)
-							btn:TweenPosition(UDim2.new(0, 0, 0.2, 0), "Out", "Quint", 0.2)
-							searchbar:TweenPosition(UDim2.new(0.645, 0, -0.044, 0), "Out", "Quint", 0.2)
-							scrollingframe.Visible = true
+				pcall(function()					
+					dropdownLabel.MouseButton1Click:Connect(function()
+						if dropdownSearchBox.Visible == false then
+							dropdownContainer:TweenSize(UDim2.new(0, 470, 0, 140), "Out", "Quint", 0.2)
+							dropdownLabel:TweenPosition(UDim2.new(0, 0, 0.2, 0), "Out", "Quint", 0.2)
+							dropdownSearchBox:TweenPosition(UDim2.new(0.645, 0, -0.044, 0), "Out", "Quint", 0.2)
+							dropdownValuesContainer.Visible = true
 							stroke.Enabled = true
-							searchbar.Visible = true
+							dropdownSearchBox.Visible = true
 						else
-							dropdown:TweenSize(UDim2.new(0, 470, 0, 40), "Out", "Quint", 0.2)
+							dropdownContainer:TweenSize(UDim2.new(0, 470, 0, 40), "Out", "Quint", 0.2)
 							dropdown.TextButton:TweenPosition(UDim2.new(0, 0, 1, 0), "Out", "Quint", 0.2)
-							scrollingframe.Visible = false
+							dropdownValuesContainer.Visible = false
 							stroke.Enabled = false
-							searchbar.Visible = false
+							dropdownSearchBox.Visible = false
 						end
 					end)
 				end)
-				spawn(function()
+
+				pcall(function()
 					local script = Script114
 					local scrollframe = script.Parent
 					local searchbar = scrollframe.Parent.SearchBar
 	   
-			   ---@diagnostic disable-next-line: lowercase-global
-					function updatesearch()
+					local function updatesearch()
 							for i,button in pairs(scrollframe:GetChildren()) do
 								if button:IsA("TextButton") then
 									local searchText = searchbar.Text
@@ -1009,6 +1001,8 @@ local library = (function()
 								stroke.Enabled = false
 
 								selected.Text = "- " .. v.Text
+
+								callback(v.Text)
 							end)
 						end
 					end
