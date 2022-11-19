@@ -934,8 +934,8 @@ local library = (function()
 				local Script119 = Instance.new("Script", dropdownValuesContainer)
 				Script119["Name"] = "SelectedElement"
 
-				local UIPadding120 = Instance.new("UIPadding", dropdownValuesContainer) -- trix
-				UIPadding120["PaddingTop"] = UDim.new(0, 9)
+				local UIPadding120 = Instance.new("UIPadding", dropdownValuesContainer)
+				UIPadding120["PaddingTop"] = UDim.new(0, 2)
 
 				local Script121 = Instance.new("Script", dropdownValuesContainer)
 				Script121["Name"] = "LockScrollingDropDown"
