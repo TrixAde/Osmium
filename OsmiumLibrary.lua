@@ -277,7 +277,7 @@ local library = (function()
 			CanvasSize = UDim2.new(0, 0, 0, 0),
 			Name = "ScrollingFrameTabs",
 			Position = UDim2.new(0.0101483287, 0, 0.0205678493, 0),
-			Size = UDim2.new(0, 500, 0, 38),
+			Size = UDim2.new(0, 480, 0, 38),
 			BackgroundTransparency = 1,
 			BackgroundColor3 = Colors.Gray.Top,
 		})
