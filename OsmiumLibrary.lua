@@ -938,21 +938,25 @@ local library = (function()
 					Name = "Searching"
 				})
 
-				pcall(function()					
+				pcall(function()
+					local dropdown = dropdownLabel.Parent
+					local scrollingframe = dropdown.ScrollingFrame
+					local searchbar = dropdown.SearchBar
+
 					dropdownLabel.MouseButton1Click:Connect(function()
-						if dropdownSearchBox.Visible == false then
-							dropdownContainer:TweenSize(UDim2.new(0, 470, 0, 140), "Out", "Quint", 0.2)
+						if searchbar.Visible == false then
+							dropdown:TweenSize(UDim2.new(0, 470, 0, 140), "Out", "Quint", 0.2)
 							dropdownLabel:TweenPosition(UDim2.new(0, 0, 0.2, 0), "Out", "Quint", 0.2)
-							dropdownSearchBox:TweenPosition(UDim2.new(0.645, 0, -0.044, 0), "Out", "Quint", 0.2)
-							dropdownValuesContainer.Visible = true
+							searchbar:TweenPosition(UDim2.new(0.645, 0, -0.044, 0), "Out", "Quint", 0.2)
+							scrollingframe.Visible = true
 							stroke.Enabled = true
-							dropdownSearchBox.Visible = true
+							searchbar.Visible = true
 						else
-							dropdownContainer:TweenSize(UDim2.new(0, 470, 0, 40), "Out", "Quint", 0.2)
+							dropdown:TweenSize(UDim2.new(0, 470, 0, 40), "Out", "Quint", 0.2)
 							dropdown.TextButton:TweenPosition(UDim2.new(0, 0, 1, 0), "Out", "Quint", 0.2)
-							dropdownValuesContainer.Visible = false
+							scrollingframe.Visible = false
 							stroke.Enabled = false
-							dropdownSearchBox.Visible = false
+							searchbar.Visible = false
 						end
 					end)
 				end)
