@@ -26,13 +26,9 @@ pcall(function()
 	sound.Volume = 1
 	sound:Play()
 
-	while true do 
-		if sound.Playing ~= true then 
-			sound:Destroy() 
-			break
-		end
-		task.wait()
-	end
+	sound.Ended:Connect(function ()
+		sound:Destroy() 
+	end)
 end)
 
 local library = (function()
