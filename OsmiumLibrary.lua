@@ -947,12 +947,14 @@ local library = (function()
 							scrollingframe.Visible = true
 							stroke.Enabled = true
 							searchbar.Visible = true
+							dropdownSelectedLabel.Visible = false
 						else
 							dropdown:TweenSize(UDim2.new(0, 470, 0, 40), "Out", "Quint", 0.2)
 							dropdown.TextButton:TweenPosition(UDim2.new(0, 0, 1, 0), "Out", "Quint", 0.2)
 							scrollingframe.Visible = false
 							stroke.Enabled = false
 							searchbar.Visible = false
+							dropdownSelectedLabel.Visible = true
 						end
 					end)
 				end)
@@ -1002,6 +1004,7 @@ local library = (function()
 								dropdownValuesContainer.Visible = false
 								searchbar.Visible = false
 								stroke.Enabled = false
+								dropdownSelectedLabel.Visible = true
 
 								selected.Text = "- " .. v.Text
 
