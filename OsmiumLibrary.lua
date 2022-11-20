@@ -272,8 +272,8 @@ local library = (function()
 			AutomaticCanvasSize = Enum.AutomaticSize.X,
 			CanvasSize = UDim2.new(0, 0, 0, 0),
 			Name = "ScrollingFrameTabs",
-			Position = UDim2.new(0.0101483287, 0, 0.0205678493, 0),
-			Size = UDim2.new(0, 480, 0, 38),
+			Position = UDim2.new(0.039, 0,0.021, 0),
+			Size = UDim2.new(0, 470, 0, 38),
 			BackgroundTransparency = 1,
 			BackgroundColor3 = Colors.Gray.Top,
 		})
@@ -285,7 +285,7 @@ local library = (function()
 		})
 		CreateInstance("UIPadding", scrollingFrameTabs, {
 			PaddingTop = UDim.new(0, 5),
-			PaddingLeft = UDim.new(0, 10),
+			PaddingLeft = UDim.new(0, 2),
 		})
 
 		pcall(function()
