@@ -272,8 +272,8 @@ local library = (function()
 			AutomaticCanvasSize = Enum.AutomaticSize.X,
 			CanvasSize = UDim2.new(0, 0, 0, 0),
 			Name = "ScrollingFrameTabs",
-			Position = UDim2.new(0.039, 0,0.021, 0),
-			Size = UDim2.new(0, 470, 0, 38),
+			Position = UDim2.new(0.028, 0,0.021, 0),
+			Size = UDim2.new(0, 476, 0, 38),
 			BackgroundTransparency = 1,
 			BackgroundColor3 = Colors.Gray.Top,
 		})
