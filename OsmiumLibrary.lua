@@ -44,22 +44,24 @@ local library = (function()
 	
     local Font = Enum.Font.GothamBold
 
-    local Colors = {
-        White = Color3.fromRGB(255, 255, 255),
-        Black = Color3.fromRGB(0, 0, 0),
-        Cyan = Color3.fromRGB(85, 255, 255),
-        Gray = {
-            Stroke = Color3.fromRGB(145, 145, 145),
-            Button = Color3.fromRGB(45, 45, 45),
-            DarkButton = Color3.fromRGB(50, 50, 50),
-            Top = Color3.fromRGB(26, 26, 26),
-            FramesBack = Color3.fromRGB(36, 36, 36),
-			TogBox = Color3.fromRGB(32, 33, 32),
-        },
-		Gradients = {
-			Cyan = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0.027451, 1, 0.968627)), ColorSequenceKeypoint.new(1, Color3.new(0.0196078, 0.305882, 0.615686))}),
-		}
-    }
+	local Themes = {
+		["default"] = {
+        	White = Color3.fromRGB(255, 255, 255),
+        	Black = Color3.fromRGB(0, 0, 0),
+        	Cyan = Color3.fromRGB(85, 255, 255),
+        	Gray = {
+        	    Stroke = Color3.fromRGB(145, 145, 145),
+        	    Button = Color3.fromRGB(45, 45, 45),
+        	    DarkButton = Color3.fromRGB(50, 50, 50),
+        	    Top = Color3.fromRGB(26, 26, 26),
+        	    FramesBack = Color3.fromRGB(36, 36, 36),
+				TogBox = Color3.fromRGB(32, 33, 32),
+        	},
+			Gradients = {
+				Cyan = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0.027451, 1, 0.968627)), ColorSequenceKeypoint.new(1, Color3.new(0.0196078, 0.305882, 0.615686))}),
+			}
+    	}
+	}
 
     ---@param name string
     ---@param parent any
@@ -78,10 +80,20 @@ local library = (function()
     end
 
     ---@param title ?string
-    function library:CreateWindow(title)
+	---@param theme ?string
+    function library:CreateWindow(title, theme)
         local title = title or "Proxima Hub Window"
+		local theme = theme or "default"
         local parent = game.CoreGui
 		local state = library.WindowState.Openned
+
+		if Themes[theme] == nil then
+			warn("Unknown color theme, switching to default theme")
+
+			theme = "default"
+		end
+
+    	local Colors = Themes[theme]
 
         local window_id = math.random(1, 400)
 
