@@ -55,11 +55,32 @@ local library = (function()
             Top = Color3.fromRGB(26, 26, 26),
             FramesBack = Color3.fromRGB(36, 36, 36),
 			TogBox = Color3.fromRGB(32, 33, 32),
+			SelectedButton = Color3.fromRGB(40,40,40),
+			DropDownButton = Color3.new(0.235294, 0.235294, 0.235294)
         },
 		Gradients = {
 			Cyan = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0.027451, 1, 0.968627)), ColorSequenceKeypoint.new(1, Color3.new(0.0196078, 0.305882, 0.615686))}),
 		}
     }
+
+	function autobutcolor(value,color)
+		local TweenService = game:GetService("TweenService")
+		value.MouseEnter:Connect(function()
+			TweenService:Create(
+				value,
+				TweenInfo.new(0.2, Enum.EasingStyle.Quad),
+				{BackgroundColor3 = Color3.fromRGB(80,80,80)}
+			):Play()
+		end)
+		
+		value.MouseLeave:Connect(function()
+			TweenService:Create(
+				value,
+				TweenInfo.new(0.3, Enum.EasingStyle.Quad),
+				{BackgroundColor3 = color}
+			):Play()
+		end)
+	end
 
     ---@param name string
     ---@param parent any
@@ -334,6 +355,7 @@ local library = (function()
 				Font = Font,
 				Name = "Tab" .. id,
 				Position = UDim2.new(-1.12306619, 0, 2.00234604, 0),
+				AutoButtonColor = false,
 				Size = UDim2.new(0, 200, 0, 50),
 				TextSize = 12,
 				BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078),
@@ -342,6 +364,8 @@ local library = (function()
 			CreateInstance("UICorner", tabButton, {
 				CornerRadius = UDim.new(0, 10)
 			})
+
+			autobutcolor(tabButton,Colors.Gray.SelectedButton)
 
 			tabButton.MouseButton1Click:Connect(function ()
 				changeTab(id)
@@ -407,7 +431,7 @@ local library = (function()
                     TextSize = 14,
                     BackgroundColor3 = Colors.Gray.Button
                 })
-
+				
                 local textBoxInstance = CreateInstance("TextBox", textBoxLabel, {
                     TextWrapped = true,
                     TextColor3 = Color3.new(0.698039, 0.698039, 0.698039),
@@ -523,6 +547,7 @@ local library = (function()
 					Size = UDim2.new(0, 451, 0, 12),
 					Font = Enum.Font.SourceSans,
 					TextColor3 = Color3.fromRGB(0, 0, 0),
+					AutoButtonColor = false,
 					TextSize = 14.000,
 					TextTransparency = 1.000,
 					ClipsDescendants = true,
@@ -607,12 +632,13 @@ local library = (function()
                     Font = Font,
                     TextXAlignment = Enum.TextXAlignment.Left,
                     TextColor3 = Colors.White,
+					AutoButtonColor = false,
                     Size = UDim2.new(0, 470, 0, 40),
                     Text = "  " .. label,
                     TextSize = 14,
                     BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
                 })
-
+				
                 CreateInstance("UICorner", mainToggleContainer, {
 					CornerRadius = UDim.new(0,5)
 				})
@@ -650,6 +676,8 @@ local library = (function()
 				CreateInstance("UIGradient",toggleButton, {
 					Color = Colors.Gradients.Cyan
 				})
+
+				autobutcolor(mainToggleContainer,Colors.Gray.SelectedButton)
 
                 local function update(call)
 					local speed = 0.1
@@ -772,6 +800,7 @@ local library = (function()
 				    Font = Font,
 				    Position = UDim2.new(0, 0, 0.166284561, 0),
 				    TextXAlignment = Enum.TextXAlignment.Left,
+					AutoButtonColor = false,
 				    Size = UDim2.new(0, 470, 0, 40),
 				    TextSize = 14,
 					BackgroundColor3 = Colors.Gray.Button
@@ -791,6 +820,8 @@ local library = (function()
 				    BackgroundTransparency = 1,
 				    Size = UDim2.new(0, 25, 0, 24),
 				})
+
+				autobutcolor(buttonContainer,Colors.Gray.SelectedButton)
 
 				buttonContainer.MouseButton1Click:Connect(function()
 					callback()
@@ -861,12 +892,15 @@ local library = (function()
 					Font = Font,
 					TextXAlignment = Enum.TextXAlignment.Left,
 					Position = UDim2.new(0, 0, 1, 0),
+					AutoButtonColor = false,
 					Size = size,
 					ZIndex = 3,
 					TextSize = 14,
 					BackgroundColor3 = Color3.new(0.176471, 0.176471, 0.176471),
 				})
-				
+
+				autobutcolor(dropdownLabel,Colors.Gray.SelectedButton)
+
 				CreateInstance("UICorner", dropdownLabel, {
 					CornerRadius = UDim.new(0,5)
 				})
@@ -914,9 +948,10 @@ local library = (function()
 						TextColor3 = Colors.White,
 						Position = UDim2.new(0.0425531901, 0, 0.0840541124, 0),
 						Size = UDim2.new(0, 469, 0, 20),
+						AutoButtonColor = false,
 						Text = value,
 						BorderSizePixel = 0,
-						BackgroundColor3 = Color3.new(0.235294, 0.235294, 0.235294),
+						BackgroundColor3 = Colors.Gray.DropDownButton,
 					}, {
 						Instance.new("UICorner")
 					})
@@ -924,6 +959,12 @@ local library = (function()
 
 				for _, v in pairs(values) do
 					addDropButton(v)
+				end
+
+				for i, v in pairs(dropdownValuesContainer:GetChildren()) do 
+					if v:IsA("TextButton") then
+						autobutcolor(v,Colors.Gray.DropDownButton)
+					end
 				end
 
 				CreateInstance("UIListLayout", dropdownValuesContainer, {
