@@ -59,7 +59,14 @@ local library = (function()
 			DropDownButton = Color3.new(0.235294, 0.235294, 0.235294)
         },
 		Gradients = {
-			Cyan = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0.027451, 1, 0.968627)), ColorSequenceKeypoint.new(1, Color3.new(0.0196078, 0.305882, 0.615686))}),
+			Cyan = 
+			ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0.027451, 1, 0.968627)), 
+			ColorSequenceKeypoint.new(1, 
+			Color3.new(0.0196078, 0.305882, 0.615686
+						)
+					)
+				}
+			),
 		}
     }
 
