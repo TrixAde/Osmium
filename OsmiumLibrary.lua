@@ -435,7 +435,7 @@ local library = (function()
 					Size = UDim2.new(0, 470, 0, 40),
                     ZIndex = 0,
                     TextSize = 14,
-                    BackgroundColor3 = Colors.Gray.Button
+                    BackgroundColor3 = Colors.Gray.DarkButton
                 })
 				
                 local textBoxInstance = CreateInstance("TextBox", textBoxLabel, {
@@ -534,7 +534,7 @@ local library = (function()
                     TextXAlignment = Enum.TextXAlignment.Left,
                     TextYAlignment = Enum.TextYAlignment.Top,
                     TextSize = 14,
-                    BackgroundColor3 = Colors.Gray.Button
+                    BackgroundColor3 = Colors.Gray.DarkButton
                 })
 
                 CreateInstance("UICorner", sliderLabel, {
@@ -754,7 +754,7 @@ local library = (function()
 					Size = UDim2.new(0, 470, 0, 40),
 					ZIndex = 0,
 					TextSize = 14,
-					BackgroundColor3 = Colors.Gray.Button
+					BackgroundColor3 = Colors.Gray.DarkButton
 				})
 
 				CreateInstance("UICorner", textLabel, {
