@@ -275,14 +275,14 @@ local library = (function()
 			Position = UDim2.new(0.039, 0,0.021, 0),
 			Size = UDim2.new(0, 470, 0, 38),
 			BackgroundTransparency = 1,
-			BackgroundColor3 = Colors.Gray.Top,
-			SortOrder = Enum.SortOrder.LayoutOrder
+			BackgroundColor3 = Colors.Gray.Top
 		})
 
 		CreateInstance("UIGridLayout", scrollingFrameTabs, {
 			FillDirection = Enum.FillDirection.Vertical,
 			CellSize = UDim2.new(0, 130, 0, 20),
-			StartCorner = Enum.StartCorner.TopLeft
+			StartCorner = Enum.StartCorner.TopLeft,
+			SortOrder = Enum.SortOrder.LayoutOrder
 		})
 		CreateInstance("UIPadding", scrollingFrameTabs, {
 			PaddingTop = UDim.new(0, 5),
