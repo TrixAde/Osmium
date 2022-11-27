@@ -51,11 +51,10 @@ local library = (function()
         Gray = {
             Stroke = Color3.fromRGB(145, 145, 145),
             Button = Color3.fromRGB(45, 45, 45),
-            DarkButton = Color3.fromRGB(50, 50, 50),
+            DarkButton = Color3.fromRGB(50, 50, 50),²
             Top = Color3.fromRGB(26, 26, 26),
             FramesBack = Color3.fromRGB(36, 36, 36),
 			TogBox = Color3.fromRGB(32, 33, 32),
-			SelectedButton = Color3.fromRGB(40,40,40),
 			DropDownButton = Color3.new(0.235294, 0.235294, 0.235294)
         },
 		Gradients = {
@@ -372,7 +371,7 @@ local library = (function()
 				CornerRadius = UDim.new(0, 10)
 			})
 
-			autobutcolor(tabButton,Colors.Gray.SelectedButton)
+			autobutcolor(tabButton,Colors.Gray.DarkButton)
 
 			tabButton.MouseButton1Click:Connect(function ()
 				changeTab(id)
@@ -684,7 +683,7 @@ local library = (function()
 					Color = Colors.Gradients.Cyan
 				})
 
-				autobutcolor(mainToggleContainer,Colors.Gray.SelectedButton)
+				autobutcolor(mainToggleContainer,Colors.Gray.DarkButton)
 
                 local function update(call)
 					local speed = 0.1
@@ -828,7 +827,7 @@ local library = (function()
 				    Size = UDim2.new(0, 25, 0, 24),
 				})
 
-				autobutcolor(buttonContainer,Colors.Gray.SelectedButton)
+				autobutcolor(buttonContainer,Colors.Gray.DarkButton)
 
 				buttonContainer.MouseButton1Click:Connect(function()
 					callback()
@@ -906,7 +905,7 @@ local library = (function()
 					BackgroundColor3 = Color3.new(0.176471, 0.176471, 0.176471),
 				})
 
-				autobutcolor(dropdownLabel,Colors.Gray.SelectedButton)
+				autobutcolor(dropdownLabel,Colors.Gray.DarkButton)
 
 				CreateInstance("UICorner", dropdownLabel, {
 					CornerRadius = UDim.new(0,5)
