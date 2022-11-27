@@ -276,6 +276,7 @@ local library = (function()
 			Size = UDim2.new(0, 470, 0, 38),
 			BackgroundTransparency = 1,
 			BackgroundColor3 = Colors.Gray.Top,
+			SortOrder = Enum.SortOrder.LayoutOrder
 		})
 
 		CreateInstance("UIGridLayout", scrollingFrameTabs, {
@@ -313,7 +314,6 @@ local library = (function()
 			end)
 		end)
 
-
 		local function changeTab(id)
 			local name = "Tab" .. id
 
@@ -337,6 +337,7 @@ local library = (function()
 				Size = UDim2.new(0, 200, 0, 50),
 				TextSize = 12,
 				BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078),
+				LayoutOrder = id
 			})
 
 			CreateInstance("UICorner", tabButton, {
