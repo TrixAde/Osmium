@@ -278,10 +278,10 @@ local library = (function()
 			BackgroundColor3 = Colors.Gray.Top
 		})
 
-		CreateInstance("UIGridLayout", scrollingFrameTabs, {
+		CreateInstance("UIListLayout", scrollingFrameTabs, {
 			FillDirection = Enum.FillDirection.Vertical,
-			CellSize = UDim2.new(0, 130, 0, 20),
-			StartCorner = Enum.StartCorner.TopLeft,
+			-- CellSize = UDim2.new(0, 130, 0, 20),
+			-- StartCorner = Enum.StartCorner.TopLeft,
 			SortOrder = Enum.SortOrder.LayoutOrder
 		})
 		CreateInstance("UIPadding", scrollingFrameTabs, {
