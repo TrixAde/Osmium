@@ -642,7 +642,7 @@ local library = (function()
                     Size = UDim2.new(0, 470, 0, 40),
                     Text = "  " .. label,
                     TextSize = 14,
-                    BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+                    BackgroundColor3 = Colors.Gray.DarkButton
                 })
 				
                 CreateInstance("UICorner", mainToggleContainer, {
@@ -809,7 +809,7 @@ local library = (function()
 					AutoButtonColor = false,
 				    Size = UDim2.new(0, 470, 0, 40),
 				    TextSize = 14,
-					BackgroundColor3 = Colors.Gray.Button
+					BackgroundColor3 = Colors.Gray.DarkButton
 				})
 
 				CreateInstance("UICorner", buttonContainer, {
@@ -902,7 +902,7 @@ local library = (function()
 					Size = size,
 					ZIndex = 3,
 					TextSize = 14,
-					BackgroundColor3 = Color3.new(0.176471, 0.176471, 0.176471),
+					BackgroundColor3 = Colors.Gray.DarkButton,
 				})
 
 				autobutcolor(dropdownLabel,Colors.Gray.DarkButton)
