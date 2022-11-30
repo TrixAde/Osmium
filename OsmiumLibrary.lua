@@ -308,7 +308,7 @@ local library = (function()
 		CreateInstance("UIGridLayout", scrollingFrameTabs, {
 			FillDirection = Enum.FillDirection.Vertical,
 			CellSize = UDim2.new(0, 130, 0, 20),
-			StartCorner = Enum.StartCorner.TopLeft
+			SortOrder = Enum.SortOrder.LayoutOrder
 		})
 		CreateInstance("UIPadding", scrollingFrameTabs, {
 			PaddingTop = UDim.new(0, 5),
