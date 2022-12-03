@@ -51,15 +51,42 @@ local library = (function()
         Gray = {
             Stroke = Color3.fromRGB(145, 145, 145),
             Button = Color3.fromRGB(45, 45, 45),
-            DarkButton = Color3.fromRGB(50, 50, 50),
+            DarkButton = Color3.fromRGB(40, 40, 40),
             Top = Color3.fromRGB(26, 26, 26),
             FramesBack = Color3.fromRGB(36, 36, 36),
 			TogBox = Color3.fromRGB(32, 33, 32),
+			DropDownButton = Color3.new(0.235294, 0.235294, 0.235294)
         },
 		Gradients = {
-			Cyan = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0.027451, 1, 0.968627)), ColorSequenceKeypoint.new(1, Color3.new(0.0196078, 0.305882, 0.615686))}),
+			Cyan = 
+			ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0.027451, 1, 0.968627)), 
+			ColorSequenceKeypoint.new(1, 
+			Color3.new(0.0196078, 0.305882, 0.615686
+						)
+					)
+				}
+			),
 		}
     }
+
+	function autobutcolor(value,color)
+		local TweenService = game:GetService("TweenService")
+		value.MouseEnter:Connect(function()
+			TweenService:Create(
+				value,
+				TweenInfo.new(0.2, Enum.EasingStyle.Quad),
+				{BackgroundColor3 = Color3.fromRGB(80,80,80)}
+			):Play()
+		end)
+		
+		value.MouseLeave:Connect(function()
+			TweenService:Create(
+				value,
+				TweenInfo.new(0.3, Enum.EasingStyle.Quad),
+				{BackgroundColor3 = color}
+			):Play()
+		end)
+	end
 
     ---@param name string
     ---@param parent any
@@ -103,9 +130,9 @@ local library = (function()
 
         local top = CreateInstance("Frame", screen, {
             Name = "Top",
-            Position = UDim2.new(0.302488327, 0, 0.108222671, 0),
+            Position = UDim2.new(0.375, 0,0.184, 0),
             BorderColor3 = Colors.Gray.Stroke,
-            Size = UDim2.new(0, 507, 0, 40),
+            Size = UDim2.new(0, 612,0, 42),
             BackgroundColor3 = Color3.fromRGB(20,20,20)
         })
 
@@ -211,10 +238,10 @@ local library = (function()
         end)
 
         local windowContainer = CreateInstance("Frame", top, {
-            Position = UDim2.new(0.000573513797, 0, 0.748558283, 0),
+            Position = UDim2.new(0, 0,0.764, 0),
             BorderColor3 = Colors.White,
             ZIndex = 0,
-            Size = UDim2.new(0, 507, 0, 489),
+            Size = UDim2.new(0, 612,0, 370),
             BackgroundColor3 = Colors.Gray.Top
         })
 
@@ -250,12 +277,30 @@ local library = (function()
             BorderColor3 = Colors.Gray.Stroke,
             ScrollBarThickness = 0,
             ScrollBarImageTransparency = 1,
-            Position = UDim2.new(0, 0, 0.0854151472, 0),
+            Position = UDim2.new(0.257, 0,0.025, 0),
             AutomaticCanvasSize = Enum.AutomaticSize.Y,
-			CanvasSize = UDim2.new(0, 0, 0, 0),
-            Size = UDim2.new(0, 496, 0, 439),
+	        CanvasSize = UDim2.new(0, 0, 0, 0),
+            Size = UDim2.new(0, 448,0, 350),
             BorderSizePixel = 0,
             BackgroundColor3 = Colors.Gray.Top
+        })
+
+        local borders = CreateInstance("Frame", windowContainer, {
+            BackgroundTransparency = 1,
+            Position = UDim2.new(0.265, 0,0.025, 0),
+            Size = UDim2.new(0, 445, 0, 350),
+            Name = "Borders",
+            Parent = frame,
+        })
+
+        CreateInstance("UIStroke", borders, {
+            ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+            Color = Color3.fromRGB(67, 67, 67),
+            Transparency = 0.8
+        })
+
+        CreateInstance("UICorner", borders, {
+            CornerRadius = UDim.new(0, 6)
         })
 
         local tabs = {}
@@ -272,21 +317,21 @@ local library = (function()
 			AutomaticCanvasSize = Enum.AutomaticSize.X,
 			CanvasSize = UDim2.new(0, 0, 0, 0),
 			Name = "ScrollingFrameTabs",
-			Position = UDim2.new(0.039, 0,0.021, 0),
-			Size = UDim2.new(0, 470, 0, 38),
+			Position = UDim2.new(0, 0,0.01, 0),
+			Size = UDim2.new(0, 160,0, 355),
 			BackgroundTransparency = 1,
-			BackgroundColor3 = Colors.Gray.Top
+			BackgroundColor3 = Colors.Gray.Top,
 		})
 
-		CreateInstance("UIListLayout", scrollingFrameTabs, {
+		CreateInstance("UIGridLayout", scrollingFrameTabs, {
 			FillDirection = Enum.FillDirection.Vertical,
-			-- CellSize = UDim2.new(0, 130, 0, 20),
-			-- StartCorner = Enum.StartCorner.TopLeft,
-			SortOrder = Enum.SortOrder.LayoutOrder
+			CellSize = UDim2.new(0, 150,0, 25),
+			SortOrder = Enum.SortOrder.LayoutOrder,
+            CellPadding = UDim2.new(0, 5,0, 10),
 		})
 		CreateInstance("UIPadding", scrollingFrameTabs, {
-			PaddingTop = UDim.new(0, 5),
-			PaddingLeft = UDim.new(0, 2),
+			PaddingTop = UDim.new(0, 10),
+            PaddingLeft = UDim.new(0, 5),
 		})
 
 		pcall(function()
@@ -314,6 +359,7 @@ local library = (function()
 			end)
 		end)
 
+
 		local function changeTab(id)
 			local name = "Tab" .. id
 
@@ -334,15 +380,17 @@ local library = (function()
 				Font = Font,
 				Name = "Tab" .. id,
 				Position = UDim2.new(-1.12306619, 0, 2.00234604, 0),
+				AutoButtonColor = false,
 				Size = UDim2.new(0, 200, 0, 50),
 				TextSize = 12,
-				BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078),
-				LayoutOrder = id
+				BackgroundColor3 = Colors.Gray.Top
 			})
 
 			CreateInstance("UICorner", tabButton, {
 				CornerRadius = UDim.new(0, 10)
 			})
+
+			autobutcolor(tabButton,Colors.Gray.Top)
 
 			tabButton.MouseButton1Click:Connect(function ()
 				changeTab(id)
@@ -379,11 +427,10 @@ local library = (function()
 			createTabButton(tabId, name)
 
             CreateInstance("UIPadding", tabContainer, {
-                PaddingLeft = UDim.new(0, 10),
-                PaddingTop = UDim.new(0, 10)
+                PaddingTop = UDim.new(0, 7)
             }) 
 			CreateInstance("UIListLayout", tabContainer, {
-				Padding = UDim.new(0, 10),
+				Padding = UDim.new(0, 7),
 				SortOrder = Enum.SortOrder.LayoutOrder,
 			})
 
@@ -403,12 +450,17 @@ local library = (function()
                     Font = Font,
                     Name = "TextBox",
                     Position = UDim2.new(0.348881781, 0, 2.46790123, 0),
-					Size = UDim2.new(0, 470, 0, 40),
+					Size = UDim2.new(0, 438, 0, 35),
                     ZIndex = 0,
                     TextSize = 14,
-                    BackgroundColor3 = Colors.Gray.Button
+                    BackgroundColor3 = Colors.Gray.DarkButton
                 })
 
+                CreateInstance("UIStroke", textBoxLabel, {
+                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                    Color = Color3.fromRGB(67, 67, 67),
+                 }) 
+				
                 local textBoxInstance = CreateInstance("TextBox", textBoxLabel, {
                     TextWrapped = true,
                     TextColor3 = Color3.new(0.698039, 0.698039, 0.698039),
@@ -416,13 +468,18 @@ local library = (function()
                     Text = "",
                     AnchorPoint = Vector2.new(0, 1),
                     Font = Font,
-                    Position = UDim2.new(0.796531916, 0, 0.827345312, 0),
+                    Position = UDim2.new(0.796531916, 0, 0.927345312, 0),
                     Size = UDim2.new(0, 85, 0, 27),
                     PlaceholderText = placeholder,
                     TextSize = 12,
                     BackgroundColor3 = Colors.Gray.TogBox,
 					ClearTextOnFocus = false,
                 })
+
+                CreateInstance("UIStroke", textBoxInstance, {
+					ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                    Color = Color3.new(0.254902, 0.254902, 0.254902),
+				})
 
                 CreateInstance("UICorner", textBoxInstance, {
 					CornerRadius = UDim.new(0,5)
@@ -435,14 +492,14 @@ local library = (function()
                 pcall(function()
                     local function shrink()
 						task.wait(0.05)
-						textBoxInstance:TweenPosition(UDim2.new(0.796531916, 0, 0.827345312, 0), "In", "Linear", 0.2)
+						textBoxInstance:TweenPosition(UDim2.new(0.796531916, 0, 0.927345312, 0), "In", "Linear", 0.2)
 						textBoxInstance:TweenSize(UDim2.new(0, 85, 0, 27), "Out", "Linear", 0.2)
                     end
 
                     local function grow()
 						task.wait(0.05)
-						textBoxInstance:TweenPosition(UDim2.new(0.507, 0, 0.827345312, 0), "In", "Linear", 0.2)
-						textBoxInstance:TweenSize(UDim2.new(0, 222, 0, 27), "In", "Linear", 0.2)
+						textBoxInstance:TweenPosition(UDim2.new(0.597, 0, 0.927345312, 0), "In", "Linear", 0.2)
+						textBoxInstance:TweenSize(UDim2.new(0, 175, 0, 27), "In", "Linear", 0.2)
                     end
 
                     textBoxInstance.FocusLost:Connect(function(enter)
@@ -498,15 +555,20 @@ local library = (function()
                 local sliderLabel = CreateInstance("TextLabel", tabContainer, {
                     TextColor3 = Colors.White,
                     Text = "  " .. label,
-                    Size = UDim2.new(0, 470, 0, 50),
+                    Size = UDim2.new(0, 438, 0, 35),
                     Font = Font,
                     Name = "Slider",
-                    Position = UDim2.new(0.348881781, 0, 0.46790123, 0),
+                    Position = UDim2.new(0.349, 0,0.468, 0),
                     TextXAlignment = Enum.TextXAlignment.Left,
                     TextYAlignment = Enum.TextYAlignment.Top,
                     TextSize = 14,
-                    BackgroundColor3 = Colors.Gray.Button
+                    BackgroundColor3 = Colors.Gray.DarkButton
                 })
+
+                CreateInstance("UIStroke", sliderLabel, {
+                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                    Color = Color3.fromRGB(67, 67, 67),
+                 })
 
                 CreateInstance("UICorner", sliderLabel, {
 					CornerRadius = UDim.new(0,5)
@@ -520,10 +582,11 @@ local library = (function()
 				local SliderButton = CreateInstance("TextButton",sliderLabel, {
 					Name = "SliderButton",
 					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-					Position = UDim2.new(0.0191489365, 0, 0.678571403, 0),
-					Size = UDim2.new(0, 451, 0, 12),
+					Position = UDim2.new(0.017, 0,0.708, 0),
+					Size = UDim2.new(0, 425,0, 13),
 					Font = Enum.Font.SourceSans,
 					TextColor3 = Color3.fromRGB(0, 0, 0),
+					AutoButtonColor = false,
 					TextSize = 14.000,
 					TextTransparency = 1.000,
 					ClipsDescendants = true,
@@ -537,8 +600,8 @@ local library = (function()
 					Name = "SliderInner",
 					BackgroundColor3 = Colors.Cyan,
 					BackgroundTransparency = 0,
-					Position = UDim2.new(-0.000555721247, 0, -0.0133082075, 0),
-					Size = UDim2.new(0, 0, 0, 12),
+					Position = UDim2.new(-0.0, 0, 0, 0),
+					Size = UDim2.new(0, 0, 0, 13),
 					BorderColor3 = Color3.fromRGB(50,50,50)
 				})
 
@@ -554,7 +617,7 @@ local library = (function()
 					Name = "SliderValue",
 					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 					BackgroundTransparency = 1.000,
-					Position = UDim2.new(0.606, 0,0.19, 0),
+					Position = UDim2.new(0.585, 0,0.09, 0),
 					Size = UDim2.new(0, 175,0, 13),
 					Font = Enum.Font.GothamBold,
 					Text = "0",
@@ -566,28 +629,28 @@ local library = (function()
 				CreateInstance("UICorner",SliderValue,{})
 
 				SliderButton.MouseButton1Down:Connect(function()
-					Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 452) * SliderInner.AbsoluteSize.X) + tonumber(minvalue)) or 0
+					Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue)) or 0
 					pcall(function()
 						callback(Value)
 						SliderValue.Text = Value
 					end)
-					SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 452), 0, 12)
+					SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 426), 0, 13)
 					moveconnection = mouse.Move:Connect(function()
-						Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 452) * SliderInner.AbsoluteSize.X) + tonumber(minvalue))
+						Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue))
 						pcall(function()
 							callback(Value)
 							SliderValue.Text = Value
 						end)
-						SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 452), 0, 12)
+						SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 426), 0, 13)
 					end)
 					releaseconnection = uis.InputEnded:Connect(function(Mouse)
 						if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-							Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 452) * SliderInner.AbsoluteSize.X) + tonumber(minvalue))
+							Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue))
 							pcall(function()
 								callback(Value)
 								SliderValue.Text = Value
 							end)
-							SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 452), 0, 12)
+							SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 426), 0, 13)
 							moveconnection:Disconnect()
 							releaseconnection:Disconnect()
 						end
@@ -608,12 +671,18 @@ local library = (function()
                     Font = Font,
                     TextXAlignment = Enum.TextXAlignment.Left,
                     TextColor3 = Colors.White,
-                    Size = UDim2.new(0, 470, 0, 40),
+					AutoButtonColor = false,
+                    Size = UDim2.new(0, 438, 0, 35),
                     Text = "  " .. label,
                     TextSize = 14,
-                    BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+                    BackgroundColor3 = Colors.Gray.DarkButton
                 })
 
+                CreateInstance("UIStroke", mainToggleContainer, {
+                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                    Color = Color3.fromRGB(67, 67, 67),
+                }) 
+				
                 CreateInstance("UICorner", mainToggleContainer, {
 					CornerRadius = UDim.new(0,5)
 				})
@@ -651,6 +720,8 @@ local library = (function()
 				CreateInstance("UIGradient",toggleButton, {
 					Color = Colors.Gradients.Cyan
 				})
+
+				autobutcolor(mainToggleContainer,Colors.Gray.DarkButton)
 
                 local function update(call)
 					local speed = 0.1
@@ -718,12 +789,17 @@ local library = (function()
 					Font = Font,
 					Name = "Label",
 					TextXAlignment = Enum.TextXAlignment.Left,
-					Size = UDim2.new(0, 470, 0, 40),
+					Size = UDim2.new(0, 438, 0, 35),
 					ZIndex = 0,
 					TextSize = 14,
-					BackgroundColor3 = Colors.Gray.Button
+					BackgroundColor3 = Colors.Gray.DarkButton
 				})
 
+                CreateInstance("UIStroke", textLabel, {
+                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                    Color = Color3.fromRGB(67, 67, 67),
+                })
+ 
 				CreateInstance("UICorner", textLabel, {
 					CornerRadius = UDim.new(0,5)
 				})
@@ -773,14 +849,20 @@ local library = (function()
 				    Font = Font,
 				    Position = UDim2.new(0, 0, 0.166284561, 0),
 				    TextXAlignment = Enum.TextXAlignment.Left,
-				    Size = UDim2.new(0, 470, 0, 40),
+					AutoButtonColor = false,
+				    Size = UDim2.new(0, 438, 0, 35),
 				    TextSize = 14,
-					BackgroundColor3 = Colors.Gray.Button
+					BackgroundColor3 = Colors.Gray.DarkButton
 				})
 
 				CreateInstance("UICorner", buttonContainer, {
 					CornerRadius = UDim.new(0,5)
 				})
+
+                CreateInstance("UIStroke", buttonContainer, {
+                   ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+                   Color = Color3.fromRGB(67, 67, 67),
+                })
 
 				local mouse = CreateInstance("ImageButton", buttonContainer, {
 				    ImageRectSize = Vector2.new(36, 36),
@@ -792,6 +874,8 @@ local library = (function()
 				    BackgroundTransparency = 1,
 				    Size = UDim2.new(0, 25, 0, 24),
 				})
+
+				autobutcolor(buttonContainer,Colors.Gray.DarkButton)
 
 				buttonContainer.MouseButton1Click:Connect(function()
 					callback()
@@ -811,22 +895,16 @@ local library = (function()
 			function tab:CreateDropdown(text, values, callback)
 				local values = values or {}
 				local callback = callback or function(_) end
-				local size = UDim2.new(0, 470, 0, 40)
 
 				local dropdownContainer = CreateInstance("Frame", tabContainer, {
 					Name = "Dropdown",
 					Position = UDim2.new(0, 0, 0.636, 0),
 					ClipsDescendants = true,
 					ZIndex = 0,
-					Size = size,
+					Size = UDim2.new(0, 438, 0, 35), --
 					BackgroundTransparency = 1,
 				})
-
-				local stroke = CreateInstance("UIStroke", dropdownContainer, {
-					Enabled = false,
-					Color = Color3.fromRGB(53, 53, 53)
-				})
-
+                
 				CreateInstance("UIPadding", dropdownContainer, {
 					PaddingTop = UDim.new(0, 15)
 				})
@@ -840,7 +918,7 @@ local library = (function()
 					Font = Enum.Font.SourceSansBold,
 					Name = "SearchBar",
 					Position = UDim2.new(0.645004511, 0, -0.0440000296, 0),
-					Size = UDim2.new(0, 156, 0, 20),
+					Size = UDim2.new(0, 130, 0, 20),
 					ZIndex = 4,
 					TextSize = 14,
 					BackgroundColor3 = Colors.Gray.TogBox,
@@ -862,12 +940,15 @@ local library = (function()
 					Font = Font,
 					TextXAlignment = Enum.TextXAlignment.Left,
 					Position = UDim2.new(0, 0, 1, 0),
-					Size = size,
+					AutoButtonColor = false,
+					Size = UDim2.new(0, 438, 0, 35), --
 					ZIndex = 3,
 					TextSize = 14,
-					BackgroundColor3 = Color3.new(0.176471, 0.176471, 0.176471),
+					BackgroundColor3 = Colors.Gray.DarkButton,
 				})
-				
+
+				autobutcolor(dropdownLabel,Colors.Gray.DarkButton)
+
 				CreateInstance("UICorner", dropdownLabel, {
 					CornerRadius = UDim.new(0,5)
 				})
@@ -880,7 +961,7 @@ local library = (function()
 					Text = "",
 					Font = Font,
 					BackgroundTransparency = 1,
-					Position = UDim2.new(0.551172733, 0, 0, 0),
+					Position = UDim2.new(0.61172733, 0, -0.05, 0),
 					Size = UDim2.new(0, 200, 0, 40),
 					ZIndex = 3,
 					TextSize = 12,
@@ -897,7 +978,7 @@ local library = (function()
 					Position = UDim2.new(0, 0, 0.215384528, 0),
 					ScrollBarImageTransparency = 1,
 					Visible = false,
-					Size = UDim2.new(0, 469, 0, 98),
+					Size = UDim2.new(0, 438, 0, 98),
 					CanvasSize = UDim2.new(0,0,0,0),
 					AutomaticCanvasSize = Enum.AutomaticSize.Y,
 				})
@@ -914,10 +995,11 @@ local library = (function()
 						Font = Enum.Font.SourceSans,
 						TextColor3 = Colors.White,
 						Position = UDim2.new(0.0425531901, 0, 0.0840541124, 0),
-						Size = UDim2.new(0, 469, 0, 20),
+						Size = UDim2.new(0, 438, 0, 20),
+						AutoButtonColor = false,
 						Text = value,
 						BorderSizePixel = 0,
-						BackgroundColor3 = Color3.new(0.235294, 0.235294, 0.235294),
+						BackgroundColor3 = Colors.Gray.DropDownButton,
 					}, {
 						Instance.new("UICorner")
 					})
@@ -925,6 +1007,12 @@ local library = (function()
 
 				for _, v in pairs(values) do
 					addDropButton(v)
+				end
+
+				for i, v in pairs(dropdownValuesContainer:GetChildren()) do 
+					if v:IsA("TextButton") then
+						autobutcolor(v,Colors.Gray.DropDownButton)
+					end
 				end
 
 				CreateInstance("UIListLayout", dropdownValuesContainer, {
@@ -946,14 +1034,16 @@ local library = (function()
 							dropdownLabel:TweenPosition(UDim2.new(0, 0, 0.2, 0), "Out", "Quint", 0.2)
 							searchbar:TweenPosition(UDim2.new(0.645, 0, -0.044, 0), "Out", "Quint", 0.2)
 							scrollingframe.Visible = true
-							stroke.Enabled = true
+							--stroke.Enabled = true
 							searchbar.Visible = true
+							dropdownSelectedLabel.Visible = false
 						else
 							dropdown:TweenSize(UDim2.new(0, 470, 0, 40), "Out", "Quint", 0.2)
 							dropdown.TextButton:TweenPosition(UDim2.new(0, 0, 1, 0), "Out", "Quint", 0.2)
 							scrollingframe.Visible = false
-							stroke.Enabled = false
+							--stroke.Enabled = false
 							searchbar.Visible = false
+							dropdownSelectedLabel.Visible = true
 						end
 					end)
 				end)
@@ -1003,6 +1093,7 @@ local library = (function()
 								dropdownValuesContainer.Visible = false
 								searchbar.Visible = false
 								stroke.Enabled = false
+								dropdownSelectedLabel.Visible = true
 
 								selected.Text = "- " .. v.Text
 
@@ -1024,4 +1115,40 @@ local library = (function()
 
 end)()
 
-return library
+local window = library:CreateWindow("Osmium UI Library")
+
+local test = window:CreateTab("Main")
+local info = window:CreateTab("Info")
+local cred = window:CreateTab("Credits")
+
+local dropdown = test:CreateDropdown("DropDown Exemple",{"Nami","Robin","Yamato"},function(val)
+	print(val)
+end)
+
+local label = test:CreateLabel("This is a Title","this is an exemple of description")
+
+local sld = test:CreateSlider("Slider Exemple",-100,100,function(arg)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = arg
+end)
+
+test:CreateTextbox("TextBox Exemple", function(value)
+    print("Value = ", value)
+end, "Write Here")
+
+local toggle = test:CreateToggle("Toggle Exemple",false,function()
+    
+end)
+
+local batp = test:CreateButton("Button Exemple", function()
+    print("c")
+end)
+
+local label = info:CreateLabel("KeyBind :","KeyBind to Close/Open the Gui Is 'Left Alt'")
+
+local label = cred:CreateLabel("Interface :","Made by Trix#2794")
+local label = cred:CreateLabel("Interface Scripts :","Made by Trix#2794")
+local label = cred:CreateLabel("Scripting :","by Trix#2794 / JulMan#1234")
+local batp = cred:CreateButton("Copy Discord Server Link", function()
+    setclipboard("discord.gg/TT3y4gkJtq")
+end)
+
