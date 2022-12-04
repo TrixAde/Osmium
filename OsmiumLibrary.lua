@@ -899,12 +899,11 @@ local library = (function()
 				local dropdownContainer = CreateInstance("Frame", tabContainer, {
 					Name = "Dropdown",
 					Position = UDim2.new(0, 0, 0.636, 0),
-					ClipsDescendants = true,
-					ZIndex = 0,
-					Size = UDim2.new(0, 438, 0, 35), --
+					ClipsDescendants = false,
+					Size = UDim2.new(0, 900, 0, 35), --
 					BackgroundTransparency = 1,
 				})
-                
+
 				CreateInstance("UIPadding", dropdownContainer, {
 					PaddingTop = UDim.new(0, 15)
 				})
@@ -917,12 +916,17 @@ local library = (function()
 					PlaceholderColor3 = Color3.new(0.698039, 0.698039, 0.698039),
 					Font = Enum.Font.SourceSansBold,
 					Name = "SearchBar",
-					Position = UDim2.new(0.645004511, 0, -0.0440000296, 0),
+					Position = UDim2.new(0.645004511, 0, -0.030000296, 0),
 					Size = UDim2.new(0, 130, 0, 20),
 					ZIndex = 4,
 					TextSize = 14,
 					BackgroundColor3 = Colors.Gray.TogBox,
 					TextWrapped = true,
+				})
+
+				CreateInstance("UIStroke", dropdownSearchBox, {
+					ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+					Color = Color3.fromRGB(67, 67, 67),
 				})
 
 				CreateInstance("UICorner", dropdownSearchBox, {
@@ -945,12 +949,18 @@ local library = (function()
 					ZIndex = 3,
 					TextSize = 14,
 					BackgroundColor3 = Colors.Gray.DarkButton,
+					BackgroundTransparency = 0
 				})
 
 				autobutcolor(dropdownLabel,Colors.Gray.DarkButton)
 
 				CreateInstance("UICorner", dropdownLabel, {
 					CornerRadius = UDim.new(0,5)
+				})
+
+				CreateInstance("UIStroke", dropdownLabel, {
+					ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+					Color = Color3.fromRGB(67, 67, 67),
 				})
 
 				local Script106 = CreateInstance("Script", dropdownLabel, {})
@@ -983,10 +993,19 @@ local library = (function()
 					AutomaticCanvasSize = Enum.AutomaticSize.Y,
 				})
 
-				CreateInstance("UICorner", dropdownValuesContainer, {})
+				CreateInstance("UICorner", dropdownValuesContainer, {
+					CornerRadius = UDim.new(0,5)
+				})
 
 				CreateInstance("UIPadding", dropdownValuesContainer, {
-					PaddingTop = UDim.new(0, 2)
+					PaddingTop = UDim.new(0, 5)
+				})
+
+				local stroke = CreateInstance("UIStroke", dropdownValuesContainer, {
+					Enabled = false,
+					Color = Color3.fromRGB(67, 67, 67),
+					ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+					Transparency = 0.85,
 				})
 
 				local function addDropButton(value)
@@ -1032,16 +1051,16 @@ local library = (function()
 						if searchbar.Visible == false then
 							dropdown:TweenSize(UDim2.new(0, 470, 0, 140), "Out", "Quint", 0.2)
 							dropdownLabel:TweenPosition(UDim2.new(0, 0, 0.2, 0), "Out", "Quint", 0.2)
-							searchbar:TweenPosition(UDim2.new(0.645, 0, -0.044, 0), "Out", "Quint", 0.2)
+							searchbar:TweenPosition(UDim2.new(0.645, 0, -0.034, 0), "Out", "Quint", 0.2)
 							scrollingframe.Visible = true
-							--stroke.Enabled = true
+							stroke.Enabled = true
 							searchbar.Visible = true
 							dropdownSelectedLabel.Visible = false
 						else
 							dropdown:TweenSize(UDim2.new(0, 470, 0, 40), "Out", "Quint", 0.2)
 							dropdown.TextButton:TweenPosition(UDim2.new(0, 0, 1, 0), "Out", "Quint", 0.2)
 							scrollingframe.Visible = false
-							--stroke.Enabled = false
+							stroke.Enabled = false
 							searchbar.Visible = false
 							dropdownSelectedLabel.Visible = true
 						end
