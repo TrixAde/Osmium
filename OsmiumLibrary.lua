@@ -88,6 +88,10 @@ local library = (function()
 		end)
 	end
 
+	function _if(bool, func1, func2) 
+		if bool then return func1 else return func2 end
+	end
+
     ---@param name string
     ---@param parent any
     ---@param props table
@@ -293,7 +297,7 @@ local library = (function()
             Parent = frame,
         })
 
-        CreateInstance("UIStroke", borders, {
+        local ustrbord = CreateInstance("UIStroke", borders, {
             ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
             Color = Color3.fromRGB(67, 67, 67),
             Transparency = 0.8
@@ -329,36 +333,36 @@ local library = (function()
 			SortOrder = Enum.SortOrder.LayoutOrder,
             CellPadding = UDim2.new(0, 5,0, 10),
 		})
+		
 		CreateInstance("UIPadding", scrollingFrameTabs, {
 			PaddingTop = UDim.new(0, 10),
             PaddingLeft = UDim.new(0, 5),
 		})
 
-		pcall(function()
-			local frame = top.Frame
+        pcall(function()
+            local frame = top.Frame
 
-			local function PlayTween(first, bool)
-				local speed = 0.3
+            local function PlayTween(first, bool)
+                local speed = 0.3
 
-				frame:TweenSize(first, "Out", "Quint", speed)
-				windowBody.Visible = bool
-				scrollingFrameTabs.Visible = bool
-			end
+                frame:TweenSize(first, "Out", "Quint", speed)
+                windowBody.Visible = bool
+                scrollingFrameTabs.Visible = bool
+				ustrbord.Enabled = bool
+            end
 
-			minimizeButton.MouseButton1Click:Connect(function()
-				if windowBody.Visible == true then
-					PlayTween(UDim2.new(0, 507, 0, 10), false)
+            minimizeButton.MouseButton1Click:Connect(function()
+                if windowBody.Visible == true then
+                    PlayTween(UDim2.new(0, frame.AbsoluteSize.X, 0, 10), false)
+                    state = library.WindowState.Minimized
 
-					state = library.WindowState.Minimized
+                else
+                    PlayTween(UDim2.new(0, frame.AbsoluteSize.X, 0, 370), true)
 
-				else
-					PlayTween(UDim2.new(0, 507, 0, 489), true)
-
-					state = library.WindowState.Openned
-				end
-			end)
-		end)
-
+                    state = library.WindowState.Openned
+                end
+            end)
+        end)
 
 		local function changeTab(id)
 			local name = "Tab" .. id
@@ -368,13 +372,19 @@ local library = (function()
 					v.Visible = false
 				end
 			end
+			for i, v in pairs(scrollingFrameTabs:GetChildren()) do 
+				if name ~= v.Name and v:IsA("TextButton") then
+					v.TextColor3 = Color3.fromRGB(173, 173, 173)
+				end
+			end
 
 			windowBody[name].Visible = true
+			scrollingFrameTabs[name].TextColor3 = Colors.White
 		end
 
 		local function createTabButton(id, text)
 			local tabButton = CreateInstance("TextButton", scrollingFrameTabs, {
-				TextColor3 = Colors.White,
+				TextColor3 = _if(id == 1,Colors.White,Color3.fromRGB(173, 173, 173)),
 				BorderColor3 = Colors.Gray.Stroke,
 				Text = text,
 				Font = Font,
@@ -900,12 +910,12 @@ local library = (function()
 					Name = "Dropdown",
 					Position = UDim2.new(0, 0, 0.636, 0),
 					ClipsDescendants = false,
-					Size = UDim2.new(0, 900, 0, 35), --
+					Size = UDim2.new(0, 900, 0, 35),
 					BackgroundTransparency = 1,
 				})
 
 				CreateInstance("UIPadding", dropdownContainer, {
-					PaddingTop = UDim.new(0, 15)
+					PaddingTop = UDim.new(0, 9)
 				})
 
 				local dropdownSearchBox = CreateInstance("TextBox", dropdownContainer, {
@@ -945,7 +955,7 @@ local library = (function()
 					TextXAlignment = Enum.TextXAlignment.Left,
 					Position = UDim2.new(0, 0, 1, 0),
 					AutoButtonColor = false,
-					Size = UDim2.new(0, 438, 0, 35), --
+					Size = UDim2.new(0, 438, 0, 35),
 					ZIndex = 3,
 					TextSize = 14,
 					BackgroundColor3 = Colors.Gray.DarkButton,
@@ -998,7 +1008,7 @@ local library = (function()
 				})
 
 				CreateInstance("UIPadding", dropdownValuesContainer, {
-					PaddingTop = UDim.new(0, 5)
+					PaddingTop = UDim.new(0, 4)
 				})
 
 				local stroke = CreateInstance("UIStroke", dropdownValuesContainer, {
@@ -1049,7 +1059,7 @@ local library = (function()
 
 					dropdownLabel.MouseButton1Click:Connect(function()
 						if searchbar.Visible == false then
-							dropdown:TweenSize(UDim2.new(0, 470, 0, 140), "Out", "Quint", 0.2)
+							dropdown:TweenSize(UDim2.new(0, 438, 0, 140), "Out", "Quint", 0.2)
 							dropdownLabel:TweenPosition(UDim2.new(0, 0, 0.2, 0), "Out", "Quint", 0.2)
 							searchbar:TweenPosition(UDim2.new(0.645, 0, -0.034, 0), "Out", "Quint", 0.2)
 							scrollingframe.Visible = true
@@ -1100,7 +1110,7 @@ local library = (function()
 					local searchbar = dropdownContainer.SearchBar
 
 					local function PlayTeen(argu)
-						argu:TweenSize(UDim2.new(0, 470, 0, 40), "Out", "Quint", 0.2)
+						argu:TweenSize(UDim2.new(0, 438, 0, 35), "Out", "Quint", 0.2)
 						argu.TextButton:TweenPosition(UDim2.new(0, 0, 1, 0), "Out", "Quint", 0.2)
 					end
 
@@ -1140,7 +1150,7 @@ local test = window:CreateTab("Main")
 local info = window:CreateTab("Info")
 local cred = window:CreateTab("Credits")
 
-local dropdown = test:CreateDropdown("DropDown Exemple",{"Nami","Robin","Yamato"},function(val)
+local dropdown = test:CreateDropdown("DropDown Exemple",{"Nami","Robin","Yamato","Nami","Robin","Yamato","Nami","Robin","Yamato"},function(val)
 	print(val)
 end)
 
