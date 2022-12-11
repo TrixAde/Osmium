@@ -44,7 +44,8 @@ local library = (function()
 	
     local Font = Enum.Font.GothamBold
 
-    local Colors = {
+	local Themes = {
+		["default"] = {
         White = Color3.fromRGB(255, 255, 255),
         Black = Color3.fromRGB(0, 0, 0),
         Cyan = Color3.fromRGB(85, 255, 255),
@@ -68,6 +69,26 @@ local library = (function()
 			),
 		}
     }
+	}
+
+	function autobutcolor(value,color)
+		local TweenService = game:GetService("TweenService")
+		value.MouseEnter:Connect(function()
+			TweenService:Create(
+				value,
+				TweenInfo.new(0.2, Enum.EasingStyle.Quad),
+				{BackgroundColor3 = Color3.fromRGB(80,80,80)}
+			):Play()
+		end)
+		
+		value.MouseLeave:Connect(function()
+			TweenService:Create(
+				value,
+				TweenInfo.new(0.3, Enum.EasingStyle.Quad),
+				{BackgroundColor3 = color}
+			):Play()
+		end)
+	end
 
 	function autobutcolor(value,color)
 		local TweenService = game:GetService("TweenService")
@@ -109,10 +130,20 @@ local library = (function()
     end
 
     ---@param title ?string
-    function library:CreateWindow(title)
+	---@param theme ?string
+    function library:CreateWindow(title, theme)
         local title = title or "Proxima Hub Window"
+		local theme = theme or "default"
         local parent = game.CoreGui
 		local state = library.WindowState.Openned
+
+		if Themes[theme] == nil then
+			warn("Unknown color theme, switching to default theme")
+
+			theme = "default"
+		end
+
+    	local Colors = Themes[theme]
 
         local window_id = math.random(1, 400)
 
