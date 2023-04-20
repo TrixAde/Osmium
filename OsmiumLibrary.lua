@@ -554,10 +554,13 @@ local library = (function()
             ---@param minvalue ?number
             ---@param maxvalue ?number
             ---@param callback ?function
-            function tab:CreateSlider(label, minvalue, maxvalue, callback, default)
+            function tab:CreateSlider(label, minvalue, maxvalue, callback, default, supportFloats)
 				minvalue = minvalue or 0
 				maxvalue = maxvalue or 100
                 local default = default or minvalue
+				if supportFloats == true then
+					supportFloats = 2
+				end
                 local callback = callback or function(_) end
 
 				local mouse = game.Players.LocalPlayer:GetMouse()
@@ -641,7 +644,15 @@ local library = (function()
 				CreateInstance("UICorner", SliderValue, {})
 
 				SliderButton.MouseButton1Down:Connect(function()
-					Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue)) or 0
+					local function Round(value)
+						return math.floor(value * 10 ^ supportFloats) / 10 ^ supportFloats
+					end
+
+					if supportFloats then
+						Value = Round((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue)) or 0
+					else
+						Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue)) or 0
+					end
 
 					pcall(function()
 						callback(Value)
@@ -651,7 +662,12 @@ local library = (function()
 					SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 426), 0, 8)
 
 					moveconnection = mouse.Move:Connect(function()
-						Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue))
+						if supportFloats then
+							Value = Round((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue))
+						else
+							Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue))
+						end
+						
 						pcall(function()
 							callback(Value)
 							SliderValue.Text = Value
@@ -661,7 +677,12 @@ local library = (function()
 
 					releaseconnection = uis.InputEnded:Connect(function(Mouse)
 						if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-							Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue))
+							if supportFloats then
+								Value = Round((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue))
+							else
+								Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue))
+							end
+
 							pcall(function()
 								callback(Value)
 								SliderValue.Text = Value
@@ -1149,7 +1170,6 @@ local library = (function()
     end
 	
 	return library
-
 end)()
 
 return library
