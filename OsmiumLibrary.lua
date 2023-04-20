@@ -304,7 +304,7 @@ local library = (function()
         })
 
         CreateInstance("UICorner", borders, {
-            CornerRadius = UDim.new(0, 6)
+            CornerRadius = UDim.new(0, 2)
         })
 
         local tabs = {}
@@ -397,7 +397,7 @@ local library = (function()
 			})
 
 			CreateInstance("UICorner", tabButton, {
-				CornerRadius = UDim.new(0, 10)
+				CornerRadius = UDim.new(0, 2)
 			})
 
 			autobutcolor(tabButton,Colors.Gray.Top)
@@ -492,25 +492,28 @@ local library = (function()
 				})
 
                 CreateInstance("UICorner", textBoxInstance, {
-					CornerRadius = UDim.new(0,5)
+					CornerRadius = UDim.new(0,2)
 				})
 
                 CreateInstance("UICorner", textBoxLabel, {
-					CornerRadius = UDim.new(0,5)
+					CornerRadius = UDim.new(0,2)
 				})
 
                 pcall(function()
-                    local function shrink()
-						task.wait(0.05)
-						textBoxInstance:TweenPosition(UDim2.new(0.796531916, 0, 0.927345312, 0), "In", "Linear", 0.2)
-						textBoxInstance:TweenSize(UDim2.new(0, 85, 0, 27), "Out", "Linear", 0.2)
-                    end
+					local originalPos = textBoxInstance.Position
+                    local originalSize = textBoxInstance.Size
 
-                    local function grow()
+					local function grow()
 						task.wait(0.05)
-						textBoxInstance:TweenPosition(UDim2.new(0.597, 0, 0.927345312, 0), "In", "Linear", 0.2)
-						textBoxInstance:TweenSize(UDim2.new(0, 175, 0, 27), "In", "Linear", 0.2)
-                    end
+					    textBoxInstance:TweenPosition(UDim2.new(originalPos.X.Scale - 0.3, originalPos.X.Offset - (originalSize.X.Offset * 0.3), originalPos.Y.Scale, originalPos.Y.Offset), "In", "Linear", 0.2)
+					    textBoxInstance:TweenSize(UDim2.new(originalSize.X.Scale + 0.3, originalSize.X.Offset * 1.3, originalSize.Y.Scale, originalSize.Y.Offset), "In", "Linear", 0.2)
+					end
+
+					local function shrink()
+					    textBoxInstance:TweenPosition(originalPos, "In", "Linear", 0.2)
+					    textBoxInstance:TweenSize(originalSize, "In", "Linear", 0.2)
+					end
+					
 
                     textBoxInstance.FocusLost:Connect(function(enter)
                         if enter then
@@ -522,7 +525,6 @@ local library = (function()
                     textBoxInstance.Focused:Connect(function() grow() end)
 
                     textBoxInstance.MouseEnter:Connect(function()
-                        task.wait(0.05)
                         grow()
                     end)
 
@@ -552,10 +554,10 @@ local library = (function()
             ---@param minvalue ?number
             ---@param maxvalue ?number
             ---@param callback ?function
-            function tab:CreateSlider(label, minvalue, maxvalue, callback)
+            function tab:CreateSlider(label, minvalue, maxvalue, callback, default)
 				minvalue = minvalue or 0
 				maxvalue = maxvalue or 100
-                --local default = default or 50
+                local default = default or minvalue
                 local callback = callback or function(_) end
 
 				local mouse = game.Players.LocalPlayer:GetMouse()
@@ -581,7 +583,7 @@ local library = (function()
                  })
 
                 CreateInstance("UICorner", sliderLabel, {
-					CornerRadius = UDim.new(0,5)
+					CornerRadius = UDim.new(0,2)
 				})
 
 				CreateInstance("UIPadding",sliderLabel, {
@@ -589,11 +591,11 @@ local library = (function()
 					PaddingTop = UDim.new(0, 3),
 				})
 				
-				local SliderButton = CreateInstance("TextButton",sliderLabel, {
+				local SliderButton = CreateInstance("TextButton", sliderLabel, {
 					Name = "SliderButton",
 					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-					Position = UDim2.new(0.017, 0,0.708, 0),
-					Size = UDim2.new(0, 425,0, 13),
+					Position = UDim2.new(0.017, 0,0.870, 0),
+					Size = UDim2.new(0, 425,0, 8),
 					Font = Enum.Font.SourceSans,
 					TextColor3 = Color3.fromRGB(0, 0, 0),
 					AutoButtonColor = false,
@@ -611,15 +613,15 @@ local library = (function()
 					BackgroundColor3 = Colors.Cyan,
 					BackgroundTransparency = 0,
 					Position = UDim2.new(-0.0, 0, 0, 0),
-					Size = UDim2.new(0, 0, 0, 13),
+					Size = UDim2.new(0, (default - minvalue) / (maxvalue - minvalue) * 426, 0, 8),
 					BorderColor3 = Color3.fromRGB(50,50,50)
 				})
 
-				CreateInstance("UICorner",SliderInner,{
+				CreateInstance("UICorner", SliderInner, {
 					CornerRadius = UDim.new(0,25)
 				})
 
-				CreateInstance("UIGradient",SliderInner, {
+				CreateInstance("UIGradient", SliderInner, {
 					Color = Colors.Gradients.Cyan
 				})
 
@@ -627,32 +629,36 @@ local library = (function()
 					Name = "SliderValue",
 					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 					BackgroundTransparency = 1.000,
-					Position = UDim2.new(0.585, 0,0.09, 0),
-					Size = UDim2.new(0, 175,0, 13),
+					Position = UDim2.new(0.585, 0,0.25, 0),
+					Size = UDim2.new(0, 175, 0, 8),
 					Font = Enum.Font.GothamBold,
-					Text = "0",
+					Text = tostring(default),
 					TextColor3 = Color3.fromRGB(255, 255, 255),
 					TextSize = 12.000,
 					TextXAlignment = Enum.TextXAlignment.Right,
 				})
 
-				CreateInstance("UICorner",SliderValue,{})
+				CreateInstance("UICorner", SliderValue, {})
 
 				SliderButton.MouseButton1Down:Connect(function()
 					Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue)) or 0
+
 					pcall(function()
 						callback(Value)
 						SliderValue.Text = Value
 					end)
-					SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 426), 0, 13)
+
+					SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 426), 0, 8)
+
 					moveconnection = mouse.Move:Connect(function()
 						Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue))
 						pcall(function()
 							callback(Value)
 							SliderValue.Text = Value
 						end)
-						SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 426), 0, 13)
+						SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 426), 0, 8)
 					end)
+
 					releaseconnection = uis.InputEnded:Connect(function(Mouse)
 						if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
 							Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 426) * SliderInner.AbsoluteSize.X) + tonumber(minvalue))
@@ -660,7 +666,7 @@ local library = (function()
 								callback(Value)
 								SliderValue.Text = Value
 							end)
-							SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 426), 0, 13)
+							SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 426), 0, 8)
 							moveconnection:Disconnect()
 							releaseconnection:Disconnect()
 						end
@@ -694,7 +700,7 @@ local library = (function()
                 }) 
 				
                 CreateInstance("UICorner", mainToggleContainer, {
-					CornerRadius = UDim.new(0,5)
+					CornerRadius = UDim.new(0,2)
 				})
 
                 local toggleContainer = CreateInstance("Frame", mainToggleContainer, {
@@ -811,7 +817,7 @@ local library = (function()
                 })
  
 				CreateInstance("UICorner", textLabel, {
-					CornerRadius = UDim.new(0,5)
+					CornerRadius = UDim.new(0,2)
 				})
 
 				local textDescription = CreateInstance("TextLabel", textLabel, {
@@ -832,7 +838,7 @@ local library = (function()
 				end
 
 				function label:SetTitle(title)
-					textLabel.Text = " " .. title
+					textLabel.Text = "  " .. title
 				end
 
 				function label:GetDescription()
@@ -840,7 +846,7 @@ local library = (function()
 				end
 
 				function label:SetDescription(description)
-					textDescription.Text = " " .. description
+					textDescription.Text = "   " .. description
 
 					textDescription.Visible = #(description or "") > 0
 				end
@@ -866,7 +872,7 @@ local library = (function()
 				})
 
 				CreateInstance("UICorner", buttonContainer, {
-					CornerRadius = UDim.new(0,5)
+					CornerRadius = UDim.new(0,2)
 				})
 
                 CreateInstance("UIStroke", buttonContainer, {
@@ -878,11 +884,11 @@ local library = (function()
 				    ImageRectSize = Vector2.new(36, 36),
 				    Image = "rbxassetid://3926305904",
 				    Name = "mouse",
-				    Position = UDim2.new(0.926306903, 0, 0.235370617, 0),
+				    Position = UDim2.new(0.936306903, 0, 0.25, 0),
 				    ImageRectOffset = Vector2.new(204, 964),
 				    ZIndex = 2,
 				    BackgroundTransparency = 1,
-				    Size = UDim2.new(0, 25, 0, 24),
+				    Size = UDim2.new(0, 21, 0, 21),
 				})
 
 				autobutcolor(buttonContainer,Colors.Gray.DarkButton)
@@ -940,11 +946,11 @@ local library = (function()
 				})
 
 				CreateInstance("UICorner", dropdownSearchBox, {
-					CornerRadius = UDim.new(0,20)
+					CornerRadius = UDim.new(0,2)
 				})
 
 				CreateInstance("UICorner", dropdownContainer, {
-					CornerRadius = UDim.new(0,5)
+					CornerRadius = UDim.new(0,2)
 				})
 
 				local dropdownLabel = CreateInstance("TextButton", dropdownContainer, {
@@ -965,7 +971,7 @@ local library = (function()
 				autobutcolor(dropdownLabel,Colors.Gray.DarkButton)
 
 				CreateInstance("UICorner", dropdownLabel, {
-					CornerRadius = UDim.new(0,5)
+					CornerRadius = UDim.new(0,2)
 				})
 
 				CreateInstance("UIStroke", dropdownLabel, {
@@ -1004,7 +1010,7 @@ local library = (function()
 				})
 
 				CreateInstance("UICorner", dropdownValuesContainer, {
-					CornerRadius = UDim.new(0,5)
+					CornerRadius = UDim.new(0,2)
 				})
 
 				CreateInstance("UIPadding", dropdownValuesContainer, {
@@ -1030,7 +1036,9 @@ local library = (function()
 						BorderSizePixel = 0,
 						BackgroundColor3 = Colors.Gray.DropDownButton,
 					}, {
-						Instance.new("UICorner")
+						CreateInstance("UICorner",nil,{
+							CornerRadius = UDim.new(0,3)
+						})
 					})
 				end
 
