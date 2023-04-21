@@ -288,7 +288,7 @@ local library = (function()
             Position = UDim2.new(0.257, 0,0.025, 0),
             AutomaticCanvasSize = Enum.AutomaticSize.Y,
 	        CanvasSize = UDim2.new(0, 0, 0, 0),
-            Size = UDim2.new(0, 448,0, 350),
+            Size = UDim2.new(0, 451,0, 350),
             BorderSizePixel = 0,
             BackgroundColor3 = Color3.fromRGB(19, 19, 19)
         })
