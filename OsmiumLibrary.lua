@@ -1070,7 +1070,6 @@ local library = (function()
                     
                     autobutcolor(btn, Colors.Gray.DropDownButton)
 
-                    local selected = dropdownContainer.TextButton.TextLabel
                     local searchbar = dropdownContainer.SearchBar
 
                     local function PlayTeen(argu)
@@ -1086,7 +1085,7 @@ local library = (function()
                         stroke.Enabled = false
                         dropdownSelectedLabel.Visible = true
 
-                        selected.Text = v.Text
+                        dropdownContainer.TextButton.TextLabel.Text = v.Text
 
                         callback(v.Text)
                     end)
