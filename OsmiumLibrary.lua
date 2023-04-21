@@ -1203,17 +1203,3 @@ local library = (function()
 end)()
 
 return library
-
-local win = library:CreateWindow("Test Window")
-
-local tab = win:CreateTab("Main")
-
-local dropdown
-
-dropdown = tab:CreateDropdown("Dropdown de test", {}, function(tets)
-    print(tets)
-end)
-
-dropdown:AddValue("1")
-dropdown:AddValue("2")
-dropdown:RemoveValue("1")
