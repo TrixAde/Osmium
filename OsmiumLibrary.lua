@@ -140,7 +140,9 @@ local library = (function()
             BackgroundColor3 = Color3.fromRGB(20,20,20)
         })
 
-        Instance.new("UICorner", top)
+        CreateInstance("UICorner", top,{
+		CornerRadius = UDim.new(0,4)
+	})
 
         CreateInstance("TextLabel", top, {
             TextColor3 = Colors.White,
@@ -249,7 +251,9 @@ local library = (function()
             BackgroundColor3 = Colors.Gray.Top
         })
 
-        Instance.new("UICorner", windowContainer)
+        CreateInstance("UICorner", windowContainer,{
+		CornerRadius = UDim.new(0,3)
+	})
 
         pcall(function()
             local openned = true
