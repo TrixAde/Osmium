@@ -1070,8 +1070,6 @@ local library = (function()
                     
                     autobutcolor(btn, Colors.Gray.DropDownButton)
 
-                    local searchbar = dropdownContainer.SearchBar
-
                     local function PlayTeen(argu)
                         argu:TweenSize(UDim2.new(0, 438, 0, 35), "Out", "Quint", 0.2)
                         argu.TextButton:TweenPosition(UDim2.new(0, 0, 1, 0), "Out", "Quint", 0.2)
@@ -1081,7 +1079,7 @@ local library = (function()
                         PlayTeen(dropdownContainer)
 
                         dropdownValuesContainer.Visible = false
-                        searchbar.Visible = false
+                        dropdownContainer.SearchBar.Visible = false
                         stroke.Enabled = false
                         dropdownSelectedLabel.Visible = true
 
