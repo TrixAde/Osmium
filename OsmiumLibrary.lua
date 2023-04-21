@@ -290,25 +290,7 @@ local library = (function()
 	        CanvasSize = UDim2.new(0, 0, 0, 0),
             Size = UDim2.new(0, 448,0, 350),
             BorderSizePixel = 0,
-            BackgroundColor3 = Colors.Gray.Top
-        })
-
-        local borders = CreateInstance("Frame", windowContainer, {
-            BackgroundTransparency = 1,
-            Position = UDim2.new(0.265, 0,0.025, 0),
-            Size = UDim2.new(0, 445, 0, 350),
-            Name = "Borders",
-            Parent = frame,
-        })
-
-        local ustrbord = CreateInstance("UIStroke", borders, {
-            ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-            Color = Color3.fromRGB(67, 67, 67),
-            Transparency = 0.8
-        })
-
-        CreateInstance("UICorner", borders, {
-            CornerRadius = UDim.new(0, 2)
+            BackgroundColor3 = Color3.fromRGB(19, 19, 19)
         })
 
         local tabs = {}
