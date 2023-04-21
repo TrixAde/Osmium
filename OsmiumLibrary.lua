@@ -1076,7 +1076,7 @@ local library = (function()
                         stroke.Enabled = false
                         dropdownSelectedLabel.Visible = true
 
-                        selected.Text = "- " .. v.Text
+                        selected.Text = v.Text
 
                         callback(v.Text)
                     end)
@@ -1182,7 +1182,7 @@ local library = (function()
                                 stroke.Enabled = false
                                 dropdownSelectedLabel.Visible = true
 
-                                selected.Text = "- " .. v.Text
+                                selected.Text = v.Text
 
                                 callback(v.Text)
                             end)
