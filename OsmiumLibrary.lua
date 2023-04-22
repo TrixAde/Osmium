@@ -1043,7 +1043,7 @@ local library = (function()
 
                 function dropdown:RemoveValue(value)
                     for _, v in pairs(dropdownValuesContainer:GetChildren()) do
-                        if v.Text == value then
+                        if v:IsA("TextButton") and v.Text == value then
                             v:Destroy()
                         end
                     end
