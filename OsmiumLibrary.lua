@@ -1035,7 +1035,7 @@ local library = (function()
                         dropdownSearchBox.Visible = false
                         dropdownSelectedLabel.Visible = true
 
-                        dropdownSelectedLabel.Text = v.Text
+                        dropdownSelectedLabel.Text = value
 
                         callback(v.Text)
                     end)
