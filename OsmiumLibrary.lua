@@ -1037,7 +1037,7 @@ local library = (function()
 
                         dropdownSelectedLabel.Text = value
 
-                        callback(v.Text)
+                        callback(value)
                     end)
                 end
 
