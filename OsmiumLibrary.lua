@@ -461,11 +461,6 @@ local library = (function()
                     TextSize = 14,
                     BackgroundColor3 = Colors.Gray.DarkButton
                 })
-
-                CreateInstance("UIStroke", textBoxLabel, {
-                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                    Color = Color3.fromRGB(67, 67, 67),
-                 }) 
                 
                 local textBoxInstance = CreateInstance("TextBox", textBoxLabel, {
                     TextWrapped = true,
@@ -480,11 +475,6 @@ local library = (function()
                     TextSize = 12,
                     BackgroundColor3 = Colors.Gray.TogBox,
                     ClearTextOnFocus = false,
-                })
-
-                CreateInstance("UIStroke", textBoxInstance, {
-                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                    Color = Color3.new(0.254902, 0.254902, 0.254902),
                 })
 
                 CreateInstance("UICorner", textBoxInstance, {
@@ -575,11 +565,6 @@ local library = (function()
                     TextSize = 14,
                     BackgroundColor3 = Colors.Gray.DarkButton
                 })
-
-                CreateInstance("UIStroke", sliderLabel, {
-                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                    Color = Color3.fromRGB(67, 67, 67),
-                 })
 
                 CreateInstance("UICorner", sliderLabel, {
                     CornerRadius = UDim.new(0,2)
@@ -710,11 +695,6 @@ local library = (function()
                     TextSize = 14,
                     BackgroundColor3 = Colors.Gray.DarkButton
                 })
-
-                CreateInstance("UIStroke", mainToggleContainer, {
-                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                    Color = Color3.fromRGB(67, 67, 67),
-                }) 
                 
                 CreateInstance("UICorner", mainToggleContainer, {
                     CornerRadius = UDim.new(0,2)
@@ -827,11 +807,6 @@ local library = (function()
                     TextSize = 14,
                     BackgroundColor3 = Colors.Gray.DarkButton
                 })
-
-                CreateInstance("UIStroke", textLabel, {
-                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                    Color = Color3.fromRGB(67, 67, 67),
-                })
  
                 CreateInstance("UICorner", textLabel, {
                     CornerRadius = UDim.new(0,2)
@@ -890,11 +865,6 @@ local library = (function()
 
                 CreateInstance("UICorner", buttonContainer, {
                     CornerRadius = UDim.new(0,2)
-                })
-
-                CreateInstance("UIStroke", buttonContainer, {
-                   ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                   Color = Color3.fromRGB(67, 67, 67),
                 })
 
                 local mouse = CreateInstance("ImageButton", buttonContainer, {
@@ -959,11 +929,6 @@ local library = (function()
                     TextWrapped = true,
                 })
 
-                CreateInstance("UIStroke", dropdownSearchBox, {
-                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                    Color = Color3.fromRGB(67, 67, 67),
-                })
-
                 CreateInstance("UICorner", dropdownSearchBox, {
                     CornerRadius = UDim.new(0,2)
                 })
@@ -991,11 +956,6 @@ local library = (function()
 
                 CreateInstance("UICorner", dropdownLabel, {
                     CornerRadius = UDim.new(0,2)
-                })
-
-                CreateInstance("UIStroke", dropdownLabel, {
-                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                    Color = Color3.fromRGB(67, 67, 67),
                 })
 
                 local Script106 = CreateInstance("Script", dropdownLabel, {})
@@ -1036,13 +996,6 @@ local library = (function()
                     PaddingTop = UDim.new(0, 4)
                 })
 
-                local stroke = CreateInstance("UIStroke", dropdownValuesContainer, {
-                    Enabled = false,
-                    Color = Color3.fromRGB(67, 67, 67),
-                    ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-                    Transparency = 0.85,
-                })
-
                 local function addDropButton(value)
                     return CreateInstance("TextButton", dropdownValuesContainer, {
                         TextSize = 14,
@@ -1079,11 +1032,10 @@ local library = (function()
                         PlayTeen(dropdownContainer)
 
                         dropdownValuesContainer.Visible = false
-                        dropdownContainer.SearchBar.Visible = false
-                        stroke.Enabled = false
+                        dropdownSearchBox.Visible = false
                         dropdownSelectedLabel.Visible = true
 
-                        dropdownContainer.TextButton.TextLabel.Text = v.Text
+                        dropdownSelectedLabel.Text = v.Text
 
                         callback(v.Text)
                     end)
@@ -1128,14 +1080,12 @@ local library = (function()
                             dropdownLabel:TweenPosition(UDim2.new(0, 0, 0.2, 0), "Out", "Quint", 0.2)
                             searchbar:TweenPosition(UDim2.new(0.680, 0, -0.020, 0), "Out", "Quint", 0.2)
                             scrollingframe.Visible = true
-                            stroke.Enabled = true
                             searchbar.Visible = true
                             dropdownSelectedLabel.Visible = false
                         else
                             dropdown:TweenSize(UDim2.new(0, 438, 0, 35), "Out", "Quint", 0.2)
                             dropdown.TextButton:TweenPosition(UDim2.new(0, 0, 1, 0), "Out", "Quint", 0.2)
                             scrollingframe.Visible = false
-                            stroke.Enabled = false
                             searchbar.Visible = false
                             dropdownSelectedLabel.Visible = true
                         end
@@ -1186,7 +1136,6 @@ local library = (function()
 
                                 dropdownValuesContainer.Visible = false
                                 searchbar.Visible = false
-                                stroke.Enabled = false
                                 dropdownSelectedLabel.Visible = true
 
                                 selected.Text = v.Text
