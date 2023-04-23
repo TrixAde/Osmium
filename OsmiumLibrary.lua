@@ -1127,7 +1127,11 @@ local library = (function ()
                     local scrollframe = script.Parent
                     local searchbar = scrollframe.Parent.SearchBar
        
-                    local function UpdateSearch()
+                    local function UpdateSearch(prop)
+                        if prop ~= "Text" then
+                            return
+                        end
+
                         if searchHook then
                             dropdown:ClearValues()
 
@@ -1156,7 +1160,7 @@ local library = (function ()
                             end
                         end
                     end
-       
+
                     searchbar.Changed:Connect(UpdateSearch)
                 end)
 
