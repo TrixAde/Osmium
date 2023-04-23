@@ -1129,9 +1129,9 @@ local library = (function ()
        
                     local function UpdateSearch()
                         if searchHook then
-                            local ok, results = pcall(searchHook, searchbar.Text)
-
                             dropdown:ClearValues()
+
+                            local ok, results = pcall(searchHook, searchbar.Text)
 
                             if not ok then
                                 dropdown:AddValue("[ERROR] Search hook result into an error :")
