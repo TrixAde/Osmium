@@ -1131,14 +1131,7 @@ local library = (function ()
                         if searchHook then
                             dropdown:ClearValues()
 
-                            local ok, results = pcall(searchHook, searchbar.Text)
-
-                            if not ok then
-                                dropdown:AddValue("[ERROR] Search hook result into an error :")
-                                dropdown:AddValue("[ERROR] " .. tostring(results))
-
-                                return
-                            end
+                            local results = searchHook(searchbar.Text)
 
                             for _, v in pairs(results) do
                                 dropdown:AddValue(v)
