@@ -1113,31 +1113,58 @@ local library = (function ()
                 end)
 
                 pcall(function ()
+                    local searchHook = nil
+
+                    function dropdown:SetSearchHook(func)
+                        searchHook = func
+                    end
+
+                    function dropdown:ResetSearchHook()
+                        searchHook = nil
+                    end
+
                     local script = Script114
                     local scrollframe = script.Parent
                     local searchbar = scrollframe.Parent.SearchBar
        
-                    local function updatesearch()
-                        for i, button in pairs(scrollframe:GetChildren()) do
-                            if button:IsA("TextButton") then
-                                local searchText = searchbar.Text
+                    local function UpdateSearch()
+                        if searchHook then
+                            local ok, results = pcall(searchHook, searchbar.Text)
 
-                                if searchText ~= "" then
-                                    local buttonText = string.lower(button.Text)
-                                    
-                                    if string.find(buttonText, searchText) then
-                                        button.Visible = true
+                            dropdown:ClearValues()
+
+                            if not ok then
+                                dropdown:AddValue("[ERROR] Search hook result into an error :")
+                                dropdown:AddValue("[ERROR] " .. tostring(results))
+
+                                return
+                            end
+
+                            for _, v in pairs(results) do
+                                dropdown:AddValue(v)
+                            end
+                        else
+                            for i, button in pairs(scrollframe:GetChildren()) do
+                                if button:IsA("TextButton") then
+                                    local searchText = searchbar.Text
+
+                                    if searchText ~= "" then
+                                        local buttonText = string.lower(button.Text)
+
+                                        if string.find(buttonText, searchText) then
+                                            button.Visible = true
+                                        else
+                                            button.Visible = false
+                                        end
                                     else
-                                        button.Visible = false
+                                        button.Visible = true
                                     end
-                                else
-                                    button.Visible = true
                                 end
                             end
                         end
                     end
        
-                    searchbar.Changed:Connect(updatesearch)
+                    searchbar.Changed:Connect(UpdateSearch)
                 end)
 
                 pcall(function ()
