@@ -1202,35 +1202,33 @@ local library = (function ()
 
             function tab:CreateSeparator(text) -- TEST ICI
 
-	            local sepa = Instance.new("ScreenGui")
-	            sepa.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-	            sepa.Parent = workspace
+                local textLabel = CreateInstance("TextLabel", tabContainer, {
+	                Font = Enum.Font.GothamBold,
+	                RichText = true,
+	                Text = text,
+	                TextColor3 = Color3.new(1, 1, 1),
+	                TextDirection = Enum.TextDirection.RightToLeft,
+	                TextSize = 13,
+	                TextStrokeColor3 = Color3.new(1, 1, 1),
+	                TextTruncate = Enum.TextTruncate.AtEnd,
+	                TextXAlignment = Enum.TextXAlignment.Left,
+	                BackgroundColor3 = Color3.new(1, 1, 1),
+	                BackgroundTransparency = 1,
+	                BorderColor3 = Color3.new(0, 0, 0),
+	                BorderSizePixel = 0,
+	                Size = UDim2.new(0, 165, 0, 40),
+	                Parent = sepa,
+                })
 
-	            local text_label = Instance.new("TextLabel")
-	            text_label.Font = Enum.Font.GothamBold
-	            text_label.RichText = true
-	            text_label.Text = text
-	            text_label.TextColor3 = Color3.new(1, 1, 1)
-	            text_label.TextDirection = Enum.TextDirection.RightToLeft
-	            text_label.TextSize = 13
-	            text_label.TextStrokeColor3 = Color3.new(1, 1, 1)
-	            text_label.TextTruncate = Enum.TextTruncate.AtEnd
-	            text_label.TextXAlignment = Enum.TextXAlignment.Left
-	            text_label.BackgroundColor3 = Color3.new(1, 1, 1)
-	            text_label.BackgroundTransparency = 1
-	            text_label.BorderColor3 = Color3.new(0, 0, 0)
-	            text_label.BorderSizePixel = 0
-	            text_label.Size = UDim2.new(0, 165, 0, 40)
-	            text_label.Parent = sepa
-
-	            local image_label = Instance.new("ImageLabel")
-	            image_label.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
-	            image_label.BackgroundColor3 = Color3.new(1, 1, 1)
-	            image_label.BorderColor3 = Color3.new(0, 0, 0)
-	            image_label.BorderSizePixel = 0
-	            image_label.Position = UDim2.new(-0.00106053206, 0, 1.11211145, 0)
-	            image_label.Size = UDim2.new(0, 177, 0, -3)
-	            image_label.Parent = text_label
+	            local image_label = CreateInstance("ImageLabel", textLabel, {
+	                Image = "rbxasset://textures/ui/GuiImagePlaceholder.png",
+	                BackgroundColor3 = Color3.new(1, 1, 1),
+	                BorderColor3 = Color3.new(0, 0, 0),
+	                BorderSizePixel = 0,
+	                Position = UDim2.new(-0.00106053206, 0, 1.11211145, 0),
+	                Size = UDim2.new(0, 177, 0, -3),
+	                Parent = text_label,
+                })
 
 	            local uigradient = Instance.new("UIGradient")
 	            uigradient.Color = ColorSequence.new({ColorSequenceKeypoint.new(0, Color3.new(0.027451, 1, 0.968627)), ColorSequenceKeypoint.new(1, Color3.new(0.0745098, 0.0745098, 0.0745098))})
