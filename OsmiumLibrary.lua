@@ -1217,7 +1217,6 @@ local library = (function ()
 	                BorderColor3 = Color3.new(0, 0, 0),
 	                BorderSizePixel = 0,
 	                Size = UDim2.new(0, 165, 0, 40),
-	                Parent = sepa,
                 })
 
 	            local image_label = CreateInstance("ImageLabel", textLabel, {
@@ -1227,7 +1226,6 @@ local library = (function ()
 	                BorderSizePixel = 0,
 	                Position = UDim2.new(-0.00106053206, 0, 1.11211145, 0),
 	                Size = UDim2.new(0, 177, 0, -3),
-	                Parent = text_label,
                 })
 
 	            local uigradient = Instance.new("UIGradient")
