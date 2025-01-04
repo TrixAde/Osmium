@@ -36,7 +36,7 @@ local library = (function ()
 
     local library = {
         WindowState = {
-            Openned = 1,
+            Opened = 1,
             Minimized = 0,
             Destroyed = -1
         }
@@ -109,7 +109,7 @@ local library = (function ()
     function library:CreateWindow(title)
         local title = title or "Proxima Hub Window"
         local parent = game.CoreGui
-        local state = library.WindowState.Openned
+        local state = library.WindowState.Opened
 
         local window_id = math.random(1, 400)
 
@@ -261,21 +261,21 @@ local library = (function ()
     	})
 
         pcall(function ()
-            local openned = true
+            local opened = true
 
             function window:Hide()
-                openned = false
+                opened = false
                 top.Visible = false
             end
 
             function window:Show()
-                openned = true
+                opened = true
                 top.Visible = true
             end
 
             local handler = UserInputService.InputBegan:Connect(function (input)
                 if input.KeyCode == Enum.KeyCode.LeftAlt then
-                    if openned then
+                    if opened then
                         window:Hide()
                     else
                         window:Show()
@@ -352,7 +352,7 @@ local library = (function ()
                     state = library.WindowState.Minimized
                 else
                     PlayTween(UDim2.new(0, frame.AbsoluteSize.X, 0, 370), true)
-                    state = library.WindowState.Openned
+                    state = library.WindowState.Opened
                 end
             end)
         end)

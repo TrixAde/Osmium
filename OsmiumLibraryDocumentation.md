@@ -30,8 +30,8 @@ end
 
 Possibles values :
 - `library.WindowState.Destroyed`: the window is closed
-- `library.WindowState.Oppenned`: the window is openned
-- `library.WindowState.Minimized`: the window is openned and minimized
+- `library.WindowState.Opened`: the window is opened
+- `library.WindowState.Minimized`: the window is opened and minimized
 
 ## Destroy Window
 
