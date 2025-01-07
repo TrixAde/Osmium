@@ -120,19 +120,19 @@ local library = (function ()
             ZIndexBehavior = Enum.ZIndexBehavior.Sibling
         })
 
-		local destructionHooks = {}
+local destructionHooks = {}
 
-		function window:OnDestroy(func)
-			table.insert(destructionHooks, func)
-		end
+        function window:OnDestroy(func)
+            table.insert(destructionHooks, func)
+        end
 
         function window:Destroy()
             screen:Destroy()
             state = library.WindowState.Destroyed
 
-			for _, v in pairs(destructionHooks) do
-				pcall(v)
-			end
+            for _, v in pairs(destructionHooks) do
+                pcall(v)
+            end
         end
 
         function window:GetTitle()
@@ -148,8 +148,8 @@ local library = (function ()
         })
 
         CreateInstance("UICorner", top, {
-        	CornerRadius = UDim.new(0, 4)
-    	})
+            CornerRadius = UDim.new(0, 4)
+        })
 
         CreateInstance("TextLabel", top, {
             TextColor3 = Colors.White,
@@ -257,8 +257,8 @@ local library = (function ()
         })
 
         CreateInstance("UICorner", windowContainer, {
-	        CornerRadius = UDim.new(0, 3)
-    	})
+            CornerRadius = UDim.new(0, 3)
+        })
 
         pcall(function ()
             local opened = true
